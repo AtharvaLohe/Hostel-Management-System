@@ -1,0 +1,51 @@
+
+body {
+    background-color: #f8f9fa; /* Light background color */
+    font-family: Arial, sans-serif; /* Font style */
+}
+
+h1, h2 {
+    color: #343a40; /* Dark color for headings */
+}
+
+.container {
+    margin-top: 20px; /* Top margin for the container */
+}
+
+.navbar {
+    margin-bottom: 20px; /* Bottom margin for the navbar */
+}
+
+.nav-link {
+    color: #007bff; /* Link color */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Darker link color on hover */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Primary button color */
+    border: none; /* Remove border */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker button color on hover */
+}
+
+.text-danger {
+    color: #dc3545; /* Danger text color */
+}
+
+.text-success {
+    color: #28a745; /* Success text color */
+}
+
+.form-control {
+    border-radius: 0.25rem; /* Rounded corners for input fields */
+}
+
+.form-control:focus {
+    border-color: #007bff; /* Border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Shadow on focus */
+}

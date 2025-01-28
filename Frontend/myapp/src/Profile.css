@@ -1,0 +1,26 @@
+/* Profile Box */
+.profile-box {
+    transition: transform 0.5s ease;
+}
+
+.move-left {
+    transform: translateX(-300px); /* Move profile box to left */
+}
+
+/* Form Container */
+.form-container {
+    display: none; /* Initially hidden */
+    transition: opacity 0.5s ease;
+    opacity: 0;
+}
+
+.form-container.show {
+    display: block;
+    opacity: 1; /* Fade in form */
+    margin-left: 20px;
+}
+
+.form-container form {
+    width: 100%;
+    max-width: 500px;
+}

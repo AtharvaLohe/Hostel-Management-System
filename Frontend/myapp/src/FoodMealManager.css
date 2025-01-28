@@ -1,0 +1,108 @@
+/* General Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f0f4f8, #e0e8f0);
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 90%;
+    max-width: 800px; /* Maximum width for larger screens */
+    margin: 20px auto; /* Center the container */
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Button Container */
+  .button-container {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 12px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin: 0 10px; /* Space between buttons */
+  }
+  
+  button:hover {
+    background-color: #45a049;
+    transform: scale(1.05);
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  /* Form Container */
+  .form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  h3 {
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  /* Input Fields */
+  label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  input,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+  }
+  
+  input:focus,
+  select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Warning Message */
+  p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .welcome-message {
+    color: #666;
+    font-size: 18px;
+    margin-top: 30px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px; /* Reduced padding for smaller screens */
+    }
+  
+    button {
+      width: 100%; /* Full width buttons on smaller screens */
+      margin: 10px 0; /* Space between buttons */
+    }
+  }
