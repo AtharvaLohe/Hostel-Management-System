@@ -6,16 +6,16 @@ body {
     padding: 0;
   }
   
-  .container {
+  /*.container {
     width: 90%;
-    max-width: 800px; /* Maximum width for larger screens */
-    margin: 20px auto; /* Center the container */
-    background-color: #fff;
+    max-width: 800px;*/ /* Maximum width for larger screens */
+    /*margin: 20px auto;*/ /* Center the container */
+    /*background-color: #fff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-  }
+  }*/
   
   /* Button Container */
   .button-container {
