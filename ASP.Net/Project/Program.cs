@@ -22,6 +22,12 @@ namespace Project
 				app.UseSwaggerUI();
 			}
 
+			app.UseCors(policy => policy.AllowAnyHeader()
+				.AllowAnyMethod()
+				.SetIsOriginAllowed(origin => true)
+				.AllowCredentials());
+
+
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
