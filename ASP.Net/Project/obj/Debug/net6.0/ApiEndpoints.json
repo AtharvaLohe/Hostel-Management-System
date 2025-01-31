@@ -21,8 +21,39 @@
   },
   {
     "ContainingType": "Project.Controllers.TicketController",
+    "Method": "MakeResolved",
+    "RelativePath": "api/Ticket/{id}/resolve",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "description",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Project.Models.Ticket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Project.Controllers.TicketController",
     "Method": "GetTickets",
-    "RelativePath": "api/TicketGetTickets",
+    "RelativePath": "api/Ticket/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -41,60 +72,8 @@
   },
   {
     "ContainingType": "Project.Controllers.TicketController",
-    "Method": "GetTicketsByHostlerId",
-    "RelativePath": "api/TicketGetTicketsByHostlerId/{hostlerId}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "hostlerId",
-        "Type": "System.Int32",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Project.Controllers.TicketController",
-    "Method": "MakeResolved",
-    "RelativePath": "api/TicketMakeResolved",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "Project.Models.Ticket",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "Project.Controllers.TicketController",
     "Method": "PostTicket",
-    "RelativePath": "api/TicketPostTicket",
+    "RelativePath": "api/Ticket/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -108,6 +87,32 @@
     "ReturnTypes": [
       {
         "Type": "Project.Models.Ticket",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "Project.Controllers.TicketController",
+    "Method": "GetTicketsByHostlerId",
+    "RelativePath": "api/Ticket/getTicket/{hostlerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "hostlerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

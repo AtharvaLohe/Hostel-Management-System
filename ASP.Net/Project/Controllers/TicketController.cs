@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
+using System.Net.Mail;
 using Microsoft.EntityFrameworkCore;
 using Project.Models;
 
 namespace Project.Controllers
 {
-    [Route("api/[controller][action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class TicketController : ControllerBase
     {
@@ -20,7 +22,7 @@ namespace Project.Controllers
 		
 
 		// Admin side method to get all request
-		[HttpGet]
+		[HttpGet("all")]
         public ActionResult<List<Ticket>> GetTickets()
         {
 			using (var _context = new p16_hostelContext())
@@ -35,7 +37,7 @@ namespace Project.Controllers
         }
 
 		// hostler side for getting all sent tickets
-		[HttpGet("{hostlerId}")]
+		[HttpGet("getTicket/{hostlerId}")]
 		public async Task<ActionResult<List<Ticket>>> GetTicketsByHostlerId(int hostlerId)
 		{
 			using (var _context = new p16_hostelContext())
@@ -61,7 +63,7 @@ namespace Project.Controllers
 
 
 		//hostler side for adding the Tickets
-		[HttpPost]
+		[HttpPost("create")]
 		public async Task<ActionResult<Ticket>> PostTicket(Ticket ticket)
 		{
 			using (var _context = new p16_hostelContext())
@@ -86,11 +88,13 @@ namespace Project.Controllers
 		}
 
 		
-		[HttpPut]
-		public async Task<ActionResult<Ticket>> MakeResolved(int id)
+		[HttpPut("{id}/resolve")]
+		public async Task<ActionResult<Ticket>> MakeResolved(int id,[FromBody] string description)
 		{
-			using (var _context = new p16_hostelContext()) { 
-			var ticket = await _context.Tickets.FindAsync(id);
+			using (var _context = new p16_hostelContext()) {
+				var ticket = await _context.Tickets
+										   .Include(t => t.Issue)
+										   .FirstOrDefaultAsync(t => t.TicketId == id);
 
 			if (ticket == null)
 			{
@@ -99,10 +103,56 @@ namespace Project.Controllers
 			ticket.ResolvedAt = DateTime.Now;
 			ticket.Status = true;
 			await _context.SaveChangesAsync();
-			
+				SendResolutionEmail(ticket.HostlerId, description,ticket);
+
 			return Ok(ticket);
 			}
 
+		}
+
+		private void SendResolutionEmail(int hostlerId,string description,Ticket ticket)
+		{
+			using (var _context = new p16_hostelContext())
+			{
+				var hostler = _context.Hostlers.Find(hostlerId);
+				if(hostler == null)
+				{
+					return;
+				}
+				var email = hostler.Email;
+				var complaintype = ticket.Issue.IssueName ?? "Unknown Issue";
+				var message = $"Dear {hostler.Firstname},\n\n" +
+					  $"Your complaint regarding '{complaintype}' has been resolved.\n\n" +
+					  $"Resolution Details: {description}\n\n" +
+					  $"Regards,\nHostel Admin";
+
+				try
+				{
+					var stmpClient = new SmtpClient("smtp.gmail.com")
+					{
+						Port = 587,
+						Credentials = new NetworkCredential("hostellhubb@gmail.com", "jsbz sasy gwhj ktqf"),
+						EnableSsl = true
+					};
+
+					var mailMessage = new MailMessage
+					{
+						From = new MailAddress("hostellhubb@gmail.com"),
+						Subject = "Complaint Resolved",
+						Body = message,
+						IsBodyHtml = false
+					};
+
+					mailMessage.To.Add(email);
+					stmpClient.Send(mailMessage);
+				}
+				catch (Exception ex)
+				{
+					Console.WriteLine("Email Could Not be Sent: "+ex.Message);
+				}
+
+
+			}
 		}
 
 
