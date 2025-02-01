@@ -132,6 +132,7 @@ const Login = () => {
                 userType: userData.role ? userData.role.roleName : 'guest',  // Assuming 'role' is an object with a 'roleName' field
             }));
 
+           
             // Redirect based on user role (existing feature)
             if (userData.role && userData.role.roleName === 'Admin') {
                 console.log('Redirecting to Admin Dashboard');

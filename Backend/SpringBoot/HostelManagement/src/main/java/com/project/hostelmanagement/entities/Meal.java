@@ -23,8 +23,9 @@ public class Meal {
     @Column(name = "Status", nullable = false)
     private MealStatus status;
 
-    @Column(name = "Food_ID")
-    private int foodId;
+    @ManyToOne
+    @JoinColumn(name = "Food_ID", nullable = false)
+    private Food food;
 
     public enum MealStatus {
         B, // Breakfast

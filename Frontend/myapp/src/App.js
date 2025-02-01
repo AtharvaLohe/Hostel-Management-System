@@ -20,6 +20,7 @@ import PublicRoute from './PublicRoute';
 import Profile from './Profile';
 import RoomAllocation from './RoomAllocation';
 import FoodMealManager from './AdminMeal';
+import MealComponent from './MealComponent';
 
 const App = () => {
     return (
@@ -47,7 +48,7 @@ const App = () => {
                         <Route path="/hostelerprofile" element={<PrivateRoute><Profile/></PrivateRoute>} />
                         <Route path="/roomallocate" element={<PrivateRoute><RoomAllocation/></PrivateRoute>} />
                         {/* Fallback Route */}
-
+                        <Route path="/hostlerMeal" element={<MealComponent></MealComponent>}/>
                         <Route path="*" element={<h2>404 Not Found</h2>} />
                         </Routes>
                         

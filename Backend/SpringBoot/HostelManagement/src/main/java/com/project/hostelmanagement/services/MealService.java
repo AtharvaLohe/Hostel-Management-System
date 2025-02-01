@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import com.project.hostelmanagement.entities.Meal;
 import com.project.hostelmanagement.repositories.MealRepository;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,4 +28,10 @@ public class MealService {
     public void deleteMeal(int id) {
         mealRepository.deleteById(id);
     }
+    
+    public List<Meal> getTodaysMeals() {
+        Date today = Date.valueOf(LocalDate.now()); // Get today's date
+        return mealRepository.findTodaysMeals(today);
+    }
+
 }
