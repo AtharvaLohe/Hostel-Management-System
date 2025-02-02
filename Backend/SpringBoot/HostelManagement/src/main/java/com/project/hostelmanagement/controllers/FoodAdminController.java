@@ -66,4 +66,5 @@ public class FoodAdminController {
         return ResponseEntity.ok(mealCounts);
     }
     
+   
 }

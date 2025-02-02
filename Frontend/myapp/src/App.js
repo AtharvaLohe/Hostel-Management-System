@@ -21,6 +21,10 @@ import Profile from './Profile';
 import RoomAllocation from './RoomAllocation';
 import FoodMealManager from './AdminMeal';
 import MealComponent from './MealComponent';
+import TicketList from './TicketList';
+import TicketForm from './TicketForm';
+import AdminTicketSystem from './AdminTicketSystem';
+
 
 const App = () => {
     return (
@@ -39,17 +43,22 @@ const App = () => {
                         <Route path="/contact" element={<ContactUs />} />
                         <Route path="/faq" element={<FAQ />} />
                         <Route path="/amenities" element={<Amenities />} />
-
+                        
+                       
                         {/* Protected Routes */}
                         
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
-                        <Route path="/meal" element={<FoodMealManager/>}/>
+                        <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />
                         <Route path="/hostelerprofile" element={<PrivateRoute><Profile/></PrivateRoute>} />
                         <Route path="/roomallocate" element={<PrivateRoute><RoomAllocation/></PrivateRoute>} />
                         {/* Fallback Route */}
-                        <Route path="/hostlerMeal" element={<MealComponent></MealComponent>}/>
+                        <Route path="/hostlerMeal" element={<PrivateRoute><MealComponent></MealComponent></PrivateRoute>}/>
+                        <Route path="/ticketlist" element= {<PrivateRoute><TicketList/></PrivateRoute>} />
+                        <Route path="/ticketform" element={<PrivateRoute><TicketForm/></PrivateRoute>} />
+                        <Route path="/ticket" element={<PrivateRoute><AdminTicketSystem/></PrivateRoute>}/>
                         <Route path="*" element={<h2>404 Not Found</h2>} />
+                        
                         </Routes>
                         
                 </div>
