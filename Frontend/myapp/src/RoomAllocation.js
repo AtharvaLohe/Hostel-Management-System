@@ -3,19 +3,18 @@ import React, { useState, useEffect } from 'react';
 
 const RoomAllocation = () => {
   const [unallocatedHostlers, setUnallocatedHostlers] = useState([]);
-  const [rooms, setRooms] = useState([]); // Initialize rooms state
+  const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedHostler, setSelectedHostler] = useState(null);
   const [selectedRoom, setSelectedRoom] = useState(null);
-  const [allocationResponse, setAllocationResponse] = useState(null); // New state for allocation response
+  const [allocationResponse, setAllocationResponse] = useState(null);
 
-  // Fetch unallocated hostlers and available rooms from the server
   useEffect(() => {
     const fetchData = async () => {
       await Promise.all([fetchUnallocatedHostlers(), fetchAvailableRooms()]);
-      setLoading(false); // Set loading to false after fetching both
+      setLoading(false);
     };
 
     fetchData();
@@ -26,10 +25,8 @@ const RoomAllocation = () => {
       const response = await fetch('http://localhost:8080/admin/unassign');
       if (!response.ok) throw new Error('Error fetching unallocated hostlers');
       const data = await response.json();
-      console.log('Unallocated Hostlers:', data); // Debugging
       setUnallocatedHostlers(data);
     } catch (error) {
-      console.error('Error fetching unallocated hostlers:', error.message);
       setError('Error fetching unallocated hostlers');
     }
   };
@@ -41,19 +38,17 @@ const RoomAllocation = () => {
       const data = await response.json();
       setRooms(data);
     } catch (error) {
-      console.error('Error fetching available rooms:', error.message);
       setError('Error fetching available rooms');
     }
   };
 
   const handleAllocateClick = (hostler) => {
     setSelectedHostler(hostler);
-    setIsFormOpen(true);
+    setIsFormOpen(true); // Open the form when a hostler is selected
   };
 
   const handleRoomChange = (event) => {
     const roomid = event.target.value;
-    console.log('Selected Room ID:', roomid); // Debugging
     setSelectedRoom(roomid);
   };
 
@@ -64,11 +59,9 @@ const RoomAllocation = () => {
     }
 
     const allocationRequest = {
-      hostlerid: selectedHostler.hostlerid, // Ensure this is a number
-      roomid: parseInt(selectedRoom, 10),   // Ensure this is an integer
+      hostlerid: selectedHostler.hostlerid,
+      roomid: parseInt(selectedRoom, 10),
     };
-
-    console.log('Sending allocation request:', allocationRequest); // Debugging
 
     try {
       const response = await fetch('http://localhost:8080/admin/allocate', {
@@ -79,75 +72,70 @@ const RoomAllocation = () => {
         body: JSON.stringify(allocationRequest),
       });
 
-      console.log('Response status:', response.status); // Debugging
-
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const responseData = await response.text(); // Parse as text
-      console.log('Raw Response Data:', responseData); // Debugging
-
+      const responseData = await response.text();
       if (!responseData) {
         setError('No response received from the server.');
       } else {
-        // Store the response in the state
         setAllocationResponse(`${responseData}`);
-
-        // Update the unallocatedHostlers state by removing the allocated hostler
         setUnallocatedHostlers((prevHostlers) =>
           prevHostlers.filter((hostler) => hostler.hostlerid !== selectedHostler.hostlerid)
         );
-
-        // Fetch the updated list of rooms
         await fetchAvailableRooms();
-
         setError(null);
-        setIsFormOpen(false); // Hide the form after submission
+        setIsFormOpen(false);
         setSelectedHostler(null);
         setSelectedRoom(null);
 
-        // Clear the allocation response after 5 seconds
         setTimeout(() => {
           setAllocationResponse(null);
-        }, 5000); // Adjusted timeout to 5 seconds for better visibility
+        }, 5000);
       }
     } catch (error) {
-      
-      console.error('Error:', error.message); // Debugging
       setError(error.message || 'Error allocating room. Please try again.');
     }
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p style={{ color: 'red' }}>{error}</p>;
+  if (error) return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
 
   return (
-    <div style={{ display: 'flex', height: '100vh' }}>
+    <div style={{ display: 'flex', height: '100%' }}>
       {/* Left Section - Unallocated Hostlers */}
-      <div style={{ flex: 1, padding: '20px', borderRight: '1px solid #ccc' }}>
-        <h2>Unallocated Hostlers</h2>
+      <div style={{
+        flex: 1, padding: '20px', borderRight: '1px solid #ddd', backgroundColor: '#fff',
+        overflowY: 'auto', maxHeight: '500px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)', marginBottom: '20px'
+      }}>
         {allocationResponse && (
-          <div style={{ marginBottom: '20px', color: 'blue' }}>
+          <div style={{
+            marginBottom: '20px', color: '#28a745', fontWeight: 'bold', textAlign: 'center'
+          }}>
             <strong>Allocation Response:</strong> {allocationResponse}
           </div>
         )}
-        <ul style={{ listStyle: 'none', padding: 0 }}>
+        <ul style={{
+          listStyle: 'none', padding: 0, margin: 0
+        }}>
           {unallocatedHostlers.map((hostler) => (
-            <li key={hostler.hostlerid} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #eee' }}>
+            <li key={hostler.hostlerid} style={{
+              marginBottom: '10px', padding: '10px', border: '1px solid #eee',
+              borderRadius: '8px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+              cursor: 'pointer', transition: 'box-shadow 0.3s ease'
+            }}>
               <div>
                 <strong>{hostler.firstname}</strong>
                 <p>{hostler.details}</p>
                 <button
                   onClick={() => handleAllocateClick(hostler)}
                   style={{
-                    padding: '5px 10px',
-                    backgroundColor: '#007bff',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer'
+                    padding: '8px 15px', backgroundColor: '#007bff', color: 'white', border: 'none',
+                    borderRadius: '4px', cursor: 'pointer', transition: 'background-color 0.3s ease'
                   }}
+                  onMouseOver={(e) => e.target.style.backgroundColor = '#0056b3'}
+                  onMouseOut={(e) => e.target.style.backgroundColor = '#007bff'}
                 >
                   Allocate
                 </button>
@@ -157,55 +145,60 @@ const RoomAllocation = () => {
         </ul>
       </div>
 
-      {/* Right Section - Allocation Form */}
-      <div style={{ flex: 1, padding: '20px', display: isFormOpen ? 'block' : 'none' }}>
-        <h2>Allocation Form</h2>
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-        <form style={{ maxWidth: '400px' }}>
-          {selectedHostler && (
-            <div style={{ marginBottom: '15px' }}>
-              <label>Hostler:</label>
-              <div style={{ padding: '8px', border: '1px solid #ccc', borderRadius: '4px' }}>
-                <strong>{selectedHostler.firstname}</strong> - {selectedHostler.details}
+      {/* Right Section - Allocation Form (Only when isFormOpen is true) */}
+      {isFormOpen && (
+        <div style={{
+          flex: 1, padding: '20px', backgroundColor: '#fff', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+          overflowY: 'auto', maxHeight: '500px'
+        }}>
+          <h2 style={{ textAlign: 'center', color: '#343a40' }}>Allocation Form</h2>
+          {error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>}
+          <form style={{ maxWidth: '400px', margin: '0 auto' }}>
+            {selectedHostler && (
+              <div style={{ marginBottom: '15px' }}>
+                <label style={{ fontWeight: 'bold' }}>Hostler:</label>
+                <div style={{
+                  padding: '8px', border: '1px solid #ccc', borderRadius: '4px', backgroundColor: '#f1f1f1'
+                }}>
+                  <strong>{selectedHostler.firstname}</strong> - {selectedHostler.details}
+                </div>
               </div>
+            )}
+
+            <div style={{ marginBottom: '15px' }}>
+              <label style={{ fontWeight: 'bold' }}>Room Number:</label>
+              <select
+                value={selectedRoom || ''}
+                onChange={handleRoomChange}
+                style={{
+                  width: '100%', padding: '8px', border: '1px solid #ccc', borderRadius: '4px'
+                }}
+              >
+                <option value="">Select Room</option>
+
+                {rooms.filter(room => !room.isFull).map((room) => (
+                  <option key={room.roomId} value={room.roomId}>
+                    Room {room.roomno}
+                  </option>
+                ))}
+              </select>
             </div>
-          )}
-   
 
-          <div style={{ marginBottom: '15px' }}>
-            <label>Room Number:</label>
-            <select
-              value={selectedRoom || ''}
-              onChange={handleRoomChange}
-              style={{ width: '100%', padding: '8px' }}
-            > 
-              <option value="">Select Room</option>
-
-              {rooms.filter(room => !room.isFull).map((room) => ( // Include rooms that are not full
-                <option key={room.roomId} value={room.roomId}>
-
-                  Room {room.roomno}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <button
-            type="button"
-            onClick={handleSubmit}
-            style={{
-              padding: '10px 20px',
-              backgroundColor: '#28a745',
-              color: 'white',
-              border: 'none',
-              borderRadius: '4px',
-              cursor: 'pointer'
-            }}
-          >
-            Submit Allocation
-          </button>
-        </form>
-      </div>
+            <button
+              type="button"
+              onClick={handleSubmit}
+              style={{
+                padding: '10px 20px', backgroundColor: '#28a745', color: 'white', border: 'none',
+                borderRadius: '4px', cursor: 'pointer', width: '100%', transition: 'background-color 0.3s ease'
+              }}
+              onMouseOver={(e) => e.target.style.backgroundColor = '#218838'}
+              onMouseOut={(e) => e.target.style.backgroundColor = '#28a745'}
+            >
+              Submit Allocation
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 };
