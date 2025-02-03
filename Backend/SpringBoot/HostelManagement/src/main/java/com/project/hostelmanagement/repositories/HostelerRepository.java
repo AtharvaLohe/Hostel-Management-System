@@ -17,4 +17,8 @@ public interface HostelerRepository extends JpaRepository<Hostler, Integer> {
 	
 	@Query("SELECT h FROM Hostler h where h.hostlerid NOT IN(SELECT ra.hostler.hostlerid FROM RoomAllocation ra)")
 	List<Hostler> findUnAssignHostler();
+	
+	@Query("SELECT h FROM Hostler h WHERE SIZE(h.roomAllocations) > 0")
+    List<Hostler> findHostlersWithRoomAllocations();
 }
+	

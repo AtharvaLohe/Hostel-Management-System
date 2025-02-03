@@ -23,6 +23,6 @@ namespace Project.Models
         public virtual Address? Address { get; set; }
         public virtual User User { get; set; } = null!;
         public virtual ICollection<Mealallocation> Mealallocations { get; set; }
-        public virtual ICollection<Roomallocation> Roomallocations { get; set; }
-    }
+		public virtual ICollection<Roomallocation> Roomallocations { get; set; } 
+	}
 }

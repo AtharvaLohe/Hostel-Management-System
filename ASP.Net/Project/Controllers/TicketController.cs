@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 using System.Net.Mail;
@@ -16,10 +12,11 @@ namespace Project.Controllers
     public class TicketController : ControllerBase
     {
 
-	
+		
+
 
 		// Constructor injection of the DbContext
-		
+
 
 		// Admin side method to get all request
 		[HttpGet("all")]
@@ -52,15 +49,15 @@ namespace Project.Controllers
 
 				// Find all tickets for the given HostlerId
 				var tickets = await _context.Tickets
-											.Where(t => t.HostlerId == hostlerId)
-											.ToListAsync();
+							.Include(t => t.Hostler)
+							.ThenInclude(h => h.Roomallocations)
+							.ThenInclude(ra => ra.Room)
+							.Where(t => t.Hostler.HostlerId == hostlerId)
+							.ToListAsync();
 
-				if (tickets.Count == 0)
-				{
-					return NotFound(); // Return NotFound if no tickets are found
-				}
 
-				return Ok(tickets); // Return the list of tickets for the hostler
+
+				return Ok(tickets); // Return thje list of tickets for the hostler
 			}
 		}
 

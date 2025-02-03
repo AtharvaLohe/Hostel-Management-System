@@ -7,16 +7,24 @@
       "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\controllers\\ticketcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\models\\hostler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\models\\hostler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\models\\roomallocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\models\\roomallocation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\models\\room.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|solutionrelative:project\\models\\ticket.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{84191F04-36BF-4478-B4E2-94FE04392FAC}|Project\\Project.csproj|d:\\final project\\hostel-management-system\\asp.net\\project\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -50,8 +58,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 223,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Roomallocation.cs",
+              "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Roomallocation.cs",
+              "RelativeDocumentMoniker": "Project\\Models\\Roomallocation.cs",
+              "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Roomallocation.cs",
+              "RelativeToolTip": "Project\\Models\\Roomallocation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T09:46:01.416Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 2,
@@ -60,7 +81,7 @@
               "RelativeDocumentMoniker": "Project\\Models\\Hostler.cs",
               "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Hostler.cs",
               "RelativeToolTip": "Project\\Models\\Hostler.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAADwvxcAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA3wBgAAABMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-03T09:05:06.581Z",
               "EditorCaption": ""
@@ -73,14 +94,14 @@
               "RelativeDocumentMoniker": "Project\\Controllers\\TicketController.cs",
               "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Controllers\\TicketController.cs",
               "RelativeToolTip": "Project\\Controllers\\TicketController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFYAAAAAAAAAAAAgwKEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T12:36:15.918Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "launchSettings.json",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "Project\\Properties\\launchSettings.json",
@@ -92,7 +113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\appsettings.json",
               "RelativeDocumentMoniker": "Project\\appsettings.json",
@@ -104,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "Issue.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Issue.cs",
               "RelativeDocumentMoniker": "Project\\Models\\Issue.cs",
@@ -116,20 +137,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Ticket.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Ticket.cs",
               "RelativeDocumentMoniker": "Project\\Models\\Ticket.cs",
               "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Ticket.cs",
               "RelativeToolTip": "Project\\Models\\Ticket.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAgwBMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T12:33:19.473Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "IssueController.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Controllers\\IssueController.cs",
               "RelativeDocumentMoniker": "Project\\Controllers\\IssueController.cs",
@@ -141,19 +162,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Program.cs",
               "RelativeDocumentMoniker": "Project\\Program.cs",
               "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Program.cs",
               "RelativeToolTip": "Project\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAdAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-29T12:14:26.454Z"
+              "WhenOpened": "2025-01-29T12:14:26.454Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 4,
+              "Title": "Room.cs",
+              "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Room.cs",
+              "RelativeDocumentMoniker": "Project\\Models\\Room.cs",
+              "ToolTip": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Room.cs",
+              "RelativeToolTip": "Project\\Models\\Room.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T09:54:53.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Mealplan.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\Mealplan.cs",
               "RelativeDocumentMoniker": "Project\\Models\\Mealplan.cs",
@@ -165,7 +200,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 11,
               "Title": "p16_hostelContext.cs",
               "DocumentMoniker": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Models\\p16_hostelContext.cs",
               "RelativeDocumentMoniker": "Project\\Models\\p16_hostelContext.cs",

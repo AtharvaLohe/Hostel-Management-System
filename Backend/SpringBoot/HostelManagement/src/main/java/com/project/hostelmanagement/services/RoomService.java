@@ -61,7 +61,7 @@ public class RoomService {
 
 	    // Add the allocation to the room's allocations list
 	    room.getRoomAllocations().add(allocation); // This updates the room's allocations
-
+	    
 	    
 	    ra.save(allocation); // This will save the RoomAllocation
 
@@ -85,6 +85,100 @@ public class RoomService {
 	    return "Room Allocated To Hosteler"+" "+mailoutput;
 	    
 	}
+	
+	 public String unallocateRoom(int hid, int rid) {
+	        // Fetch the Hostler and Room by ID
+	        Hostler hostler = hr.findById(hid)
+	                .orElseThrow(() -> new RuntimeException("Hostler not found"));
+	        Room room = rs.findById(rid)
+	                .orElseThrow(() -> new RuntimeException("Room not found"));
+
+	        // Find and remove the RoomAllocation associated with this hostler and room
+	        RoomAllocation allocation = room.getRoomAllocations().stream()
+	                .filter(a -> a.getHostler().equals(hostler))
+	                .findFirst()
+	                .orElseThrow(() -> new RuntimeException("No allocation found"));
+
+	        // Remove the allocation from both the Hostler and Room collections
+	        hostler.getRoomAllocations().remove(allocation);
+	        room.getRoomAllocations().remove(allocation);
+	        ra.delete(allocation);
+	        // Save the updated Hostler and Room entities
+	        hr.save(hostler);
+	        // Directly set room status to AVAILABLE, no need to check
+	        room.setStatus(RoomStatus.AVAILABLE);
+	        rs.save(room); // Update room status
+
+	        return "Room successfully unallocated from hostler.";
+	    }
+	 
+	 
+	 @Transactional
+	 public String updateHostlerRoom(int hid, int oldRid, int newRid) {
+	     // Fetch hostler
+	     Hostler hostler = hr.findById(hid)
+	             .orElseThrow(() -> new RuntimeException("Hostler not found"));
+
+	     // Fetch the new room
+	     Room newRoom = rs.findById(newRid)
+	             .orElseThrow(() -> new RuntimeException("New Room not found"));
+
+	     // Fetch the old allocation (This avoids fetching the old room explicitly)
+	     RoomAllocation oldAllocation = hostler.getRoomAllocations().stream()
+	             .filter(a -> a.getRoom().getRoomId() == oldRid)
+	             .findFirst()
+	             .orElseThrow(() -> new RuntimeException("No allocation found for this hostler in the old room"));
+
+	     // Get reference to the old room from the allocation
+	     Room oldRoom = oldAllocation.getRoom();
+
+	     // Remove the old allocation from hostler and old room
+	     hostler.getRoomAllocations().remove(oldAllocation);
+	     oldRoom.getRoomAllocations().remove(oldAllocation);
+	     
+	     // Delete the old allocation from the database
+	     ra.delete(oldAllocation);
+
+	     // Update the old room's status if space is now available
+	    
+	         oldRoom.setStatus(RoomStatus.AVAILABLE);
+	     
+	     
+	     // Ensure the new room has space
+	     if (newRoom.getRoomAllocations().size() >= newRoom.getCapacity()) {
+	         throw new RuntimeException("New room is already full.");
+	     }
+
+	     // Create new allocation
+	     RoomAllocation newAllocation = new RoomAllocation();
+	     newAllocation.setHostler(hostler);
+	     newAllocation.setRoom(newRoom);
+	     newAllocation.setAllocationdate(LocalDate.now());
+
+	     // Add new allocation to hostler and new room
+	     hostler.getRoomAllocations().add(newAllocation);
+	     newRoom.getRoomAllocations().add(newAllocation);
+
+	     // Save the new allocation
+	     ra.save(newAllocation);
+
+	     //  Update new room status
+	     newRoom.setStatus(newRoom.getRoomAllocations().size() >= newRoom.getCapacity() ? RoomStatus.FULL : RoomStatus.AVAILABLE);
+	     
+	     // Save the updated old and new room statuses
+	     rs.save(oldRoom);
+	     rs.save(newRoom);
+
+	     return "Hostler room updated successfully.";
+	 }
+
+	
+	
+	  public List<Hostler> getAllAllocatedHostlers() {
+	        return hr.findHostlersWithRoomAllocations();
+	    }
+	
+	
 }
 
 
