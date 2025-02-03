@@ -14,5 +14,6 @@ namespace Project.Models
         public DateTime? ResolvedAt { get; set; }
 
         public virtual Issue? Issue { get; set; }
-    }
+		public virtual Hostler? Hostler { get; set; }
+	}
 }

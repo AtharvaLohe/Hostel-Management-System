@@ -32,7 +32,10 @@ namespace Project.Controllers
 					return NotFound();
 				}
 
-				return _context.Tickets.ToList();
+				var tickets = _context.Tickets
+							.Include(t => t.Hostler)  // Include Hostler Details
+							.ToList();
+				return tickets;
 			}
         }
 
