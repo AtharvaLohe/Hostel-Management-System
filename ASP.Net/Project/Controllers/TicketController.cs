@@ -30,8 +30,10 @@ namespace Project.Controllers
 				}
 
 				var tickets = _context.Tickets
-							.Include(t => t.Hostler)  // Include Hostler Details
-							.ToList();
+					.Include(t => t.Hostler)  // Include Hostler Details
+					.ThenInclude(h => h.Roomallocations)  // Include RoomAllocations
+					.ThenInclude(ra => ra.Room)  // Include Room
+					.ToList();
 				return tickets;
 			}
         }

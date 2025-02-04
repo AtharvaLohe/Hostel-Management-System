@@ -24,6 +24,7 @@ import MealComponent from './MealComponent';
 import TicketList from './TicketList';
 import TicketForm from './TicketForm';
 import AdminTicketSystem from './AdminTicketSystem';
+import AllocatedHostlers from './AllocatedHostler';
 
 
 const App = () => {
@@ -46,7 +47,7 @@ const App = () => {
                         
                        
                         {/* Protected Routes */}
-                        
+                       <Route path='/room' element={<AllocatedHostlers></AllocatedHostlers>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />

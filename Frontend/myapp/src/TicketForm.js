@@ -7,7 +7,6 @@ const TicketForm = () => {
   const [ticketDetails, setTicketDetails] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [tickets, setTickets] = useState([]); // State to hold list of tickets
   const [successMessage, setSuccessMessage] = useState(''); // State for success message
   const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submission status
   const [hostlerId, setHostlerId] = useState(null); // State to hold the hostlerId
@@ -31,7 +30,7 @@ const TicketForm = () => {
       try {
         console.log('Fetching issues...');
         
-        const response = await fetch('https://localhost:7182/api/issue');
+        const response = await fetch('https://localhost:7182/api/Issue'); // Correct URL for issues
         if (!response.ok) {
           throw new Error('Failed to fetch issues');
         }
@@ -56,24 +55,6 @@ const TicketForm = () => {
     fetchIssues();
   }, []);
 
-  // Fetch tickets for the hostler
-  const fetchTickets = async () => {
-    if (!hostlerId) return;
-
-    try {
-      const response = await fetch(`https://localhost:7182/api/Ticket/getTicket/${hostlerId}`);
-      if (!response.ok) {
-        throw new Error('Failed to fetch tickets');
-      }
-
-      const data = await response.json();
-      setTickets(data);
-    } catch (error) {
-      console.error('Error fetching tickets:', error);
-      setError('Failed to fetch tickets');
-    }
-  };
-
   // Handle when the user selects an issue from the dropdown
   const handleSelectChange = (e) => {
     setSelectedIssue(e.target.value);
@@ -95,10 +76,11 @@ const TicketForm = () => {
       return;
     }
 
+    // Create ticket data object with exact field names for IssueId, HostlerId, and Description
     const ticketData = {
-      issueId: selectedIssue,
-      hostlerId: hostlerId, // Now using the hostlerId mapped from `userid`
-      description: ticketDetails,
+      IssueId: selectedIssue,
+      HostlerId: hostlerId, // Now using the hostlerId mapped from `userid`
+      Description: ticketDetails,
     };
 
     console.log('Submitting ticket data:', ticketData); // Debugging log
@@ -124,7 +106,6 @@ const TicketForm = () => {
       setSelectedIssue('');
       setTicketDetails('');
       setError(null);
-      fetchTickets(); // Fetch updated ticket list after submission
     } catch (error) {
       console.error('Error submitting ticket:', error);
       setError('Failed to submit ticket: ' + error.message);
@@ -132,10 +113,6 @@ const TicketForm = () => {
       setIsSubmitting(false);
     }
   };
-
-  useEffect(() => {
-    fetchTickets(); // Fetch tickets when component mounts
-  }, [hostlerId]);
 
   return (
     <div className="container mt-5">

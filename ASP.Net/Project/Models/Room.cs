@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Project.Models
 {
@@ -17,6 +18,7 @@ namespace Project.Models
         public string RoomType { get; set; } = null!;
         public string Status { get; set; } = null!;
 
+        [JsonIgnore]
         public virtual ICollection<Roomallocation> Roomallocations { get; set; }
     }
 }
