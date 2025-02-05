@@ -1,178 +1,150 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { useNavigate } from "react-router-dom";
 
-const ForgetPassword = () => {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [otpSent, setOtpSent] = useState(false);
-  const [otpVerified, setOtpVerified] = useState(false);
-  const [error, setError] = useState("");
-  const [message, setMessage] = useState("");
+
+  const [showOtpField, setShowOtpField] = useState(false);
+  const [showPasswordFields, setShowPasswordFields] = useState(false);
   const [isOtpButtonDisabled, setIsOtpButtonDisabled] = useState(false);
-  const [otpExpiryTime, setOtpExpiryTime] = useState(null);
+  const [message, setMessage] = useState("");
 
   const navigate = useNavigate();
-  // Function to send OTP
-  const sendOtp = async () => {
-    setError("");
+  // Send OTP Function
+  const handleSendOtp = async () => {
+    setIsOtpButtonDisabled(true);
+    setShowOtpField(true);
     setMessage("");
 
-    if (!email) {
-      setError("Please enter your email.");
-      return;
-    }
+    setTimeout(() => {
+      setIsOtpButtonDisabled(false);
+    }, 5 * 60 * 1000);
 
-    try {
-      const response = await fetch("http://localhost:8080/api/password/sendOtp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
+    const response = await fetch("http://localhost:8080/api/password/sendOtp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
 
-      if (response.ok) {
-        setOtpSent(true);
-        setIsOtpButtonDisabled(true);
-        const expiryTime = Date.now() + 5 * 60 * 1000; // 5 minutes from now
-        setOtpExpiryTime(expiryTime);
-
-        setTimeout(() => {
-          setIsOtpButtonDisabled(false);
-          setOtpExpiryTime(null);
-        }, 5 * 60 * 1000);
-      } else {
-        setError("Failed to send OTP. Please try again.");
-      }
-    } catch (error) {
-      setError("Error sending OTP. Please try again.");
-    }
+    const data = await response.text();
+    setMessage(data);
   };
 
-  // Function to verify OTP
-  const verifyOtp = async () => {
-    setError("");
-    setMessage("");
-
-    if (!otp) {
-      setError("Please enter the OTP.");
-      return;
+  // Verify OTP Function
+  const handleVerifyOtp = async () => {
+    const response = await fetch("http://localhost:8080/api/password/verifyOtp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, otp }),
+    });
+  
+    const data = await response.json();
+    if (data.success) {
+      setShowOtpField(false); // Hide OTP input & button
+      setShowPasswordFields(true); // Show password fields
     }
-
-    try {
-      const response = await fetch("http://localhost:8080/api/password/verifyOtp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, otp }),
-      });
-
-      const data = await response.json();
-      if (data.success) {
-        setOtpVerified(true);
-        setMessage(data.message);
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError("Failed to verify OTP. Please try again.");
-    }
+    setMessage(data.message);
   };
-
-  // Function to reset password
-  const resetPassword = async () => {
-    setError("");
-    setMessage("");
-
-    if (!newPassword || !confirmPassword) {
-      setError("Please enter both password fields.");
-      return;
-    }
+  
+  // Reset Password Function
+  const handleResetPassword = async () => {
     if (newPassword !== confirmPassword) {
-      setError("Passwords do not match.");
+      setMessage("Passwords do not match!");
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:8080/api/password/resetPassword", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, newPassword }),
-      });
+    const response = await fetch("http://localhost:8080/api/password/resetPassword", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, newPassword }),
+    });
 
-      const data = await response.json();
-      if (data.success) {
-        setMessage(data.message);
-        navigate('/login')
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError("Failed to reset password. Please try again.");
+    const data = await response.json();
+    if (data.success) {
+      navigate('/login');
     }
+    setMessage(data.message);
+
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "auto", textAlign: "center" }}>
-      <h2>Password Reset</h2>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{ marginTop: "-50px" }}>
 
-      {!otpSent ? (
-        <>
+      <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
+        <h2 className="text-center mb-3">Forgot Password</h2>
+
+        {/* Email Input */}
+        <div className="mb-3">
+          <label className="form-label">Enter Email:</label>
           <input
             type="email"
-            placeholder="Enter your email"
+            className="form-control"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
+            placeholder="Enter your email"
           />
-          <button onClick={sendOtp} disabled={isOtpButtonDisabled} style={{ padding: "10px", width: "100%" }}>
-            {isOtpButtonDisabled
-              ? `Resend OTP in ${Math.ceil((otpExpiryTime - Date.now()) / 1000 / 60)} min`
-              : "Send OTP"}
-          </button>
-        </>
-      ) : !otpVerified ? (
-        <>
-          <input
-            type="text"
-            placeholder="Enter OTP"
-            value={otp}
-            onChange={(e) => setOtp(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-          />
-          <button onClick={verifyOtp} style={{ padding: "10px", width: "100%" }}>
-            Verify OTP
-          </button>
-        </>
-      ) : (
-        <>
-          <input
-            type="password"
-            placeholder="New Password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-          />
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-            style={{ width: "100%", padding: "10px", margin: "10px 0" }}
-          />
-          <button onClick={resetPassword} style={{ padding: "10px", width: "100%" }}>
-            Reset Password
-          </button>
-        </>
-      )}
+        </div>
 
-      {message && <p style={{ color: "green" }}>{message}</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+        {/* Send OTP Button */}
+        <button
+          onClick={handleSendOtp}
+          disabled={isOtpButtonDisabled}
+          className="btn btn-primary w-100"
+        >
+          {isOtpButtonDisabled ? "Wait 5 min to Resend OTP" : "Send OTP"}
+        </button>
+
+        {/* OTP Input */}
+        {showOtpField && (
+          <div className="mt-3">
+            <label className="form-label">Enter OTP:</label>
+            <input
+              type="text"
+              className="form-control"
+              value={otp}
+              onChange={(e) => setOtp(e.target.value)}
+              placeholder="Enter OTP"
+            />
+            <button onClick={handleVerifyOtp} className="btn btn-success w-100 mt-2">
+              Verify OTP
+            </button>
+          </div>
+        )}
+
+        {/* Password Fields */}
+        {showPasswordFields && (
+          <div className="mt-3">
+            <label className="form-label">New Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              placeholder="Enter new password"
+            />
+
+            <label className="form-label mt-2">Confirm Password:</label>
+            <input
+              type="password"
+              className="form-control"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              placeholder="Confirm new password"
+            />
+
+            <button onClick={handleResetPassword} className="btn btn-danger w-100 mt-3">
+              Reset Password
+            </button>
+          </div>
+        )}
+
+        {/* Message Display */}
+        {message && <div className="alert alert-info text-center mt-3">{message}</div>}
+      </div>
     </div>
   );
-};
-
-export default ForgetPassword;
+}
