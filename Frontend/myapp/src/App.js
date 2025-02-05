@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store';
-
+import { useLocation } from 'react-router-dom';
 // Component Imports
 import Header from './Header';
 import Login from './Login';
@@ -25,6 +25,9 @@ import TicketList from './TicketList';
 import TicketForm from './TicketForm';
 import AdminTicketSystem from './AdminTicketSystem';
 import AllocatedHostlers from './AllocatedHostler';
+import ForgetPassword from './ForgetPassword';
+
+
 
 
 const App = () => {
@@ -44,10 +47,11 @@ const App = () => {
                         <Route path="/contact" element={<ContactUs />} />
                         <Route path="/faq" element={<FAQ />} />
                         <Route path="/amenities" element={<Amenities />} />
-                        
+                        <Route path='/forgetPassword' element={<ForgetPassword></ForgetPassword>}/>
                        
                         {/* Protected Routes */}
-                       <Route path='/room' element={<AllocatedHostlers></AllocatedHostlers>}/> 
+                        
+                       <Route path='/room' element={<PrivateRoute><AllocatedHostlers></AllocatedHostlers></PrivateRoute>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />
@@ -67,5 +71,7 @@ const App = () => {
         </Provider>
     );
 };
+
+
 
 export default App;

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
-
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, logout } from './userSlice';  // Adjust the path accordingly
 const TicketForm = () => {
   const [issues, setIssues] = useState([]);
   const [selectedIssue, setSelectedIssue] = useState('');
@@ -10,10 +11,10 @@ const TicketForm = () => {
   const [successMessage, setSuccessMessage] = useState(''); // State for success message
   const [isSubmitting, setIsSubmitting] = useState(false); // State to manage submission status
   const [hostlerId, setHostlerId] = useState(null); // State to hold the hostlerId
-
+   const userDetails = useSelector((state) => state.user.userDetails); 
   // Fetch userId from localStorage and map it to hostlerId
   useEffect(() => {
-    const userDetails = JSON.parse(localStorage.getItem('userDetails')); // Get the user details from localStorage
+
     console.log('Fetched user details from localStorage:', userDetails); // Log the user details
 
     if (userDetails && userDetails.userid) { // Check for `userid` (lowercase)

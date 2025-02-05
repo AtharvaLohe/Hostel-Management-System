@@ -1,5 +1,7 @@
 package com.project.hostelmanagement.entities;
 
+import java.sql.Date;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -17,7 +19,7 @@ public class Meal {
     private String description;
 
     @Column(name = "Date", nullable = false)
-    private java.sql.Date date;
+    private Date date;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "Status", nullable = false)

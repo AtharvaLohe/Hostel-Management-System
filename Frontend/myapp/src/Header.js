@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { logout } from './userSlice'; // Adjust path for your userSlice
+import { logout, setUser } from './userSlice'; // Adjust path for your userSlice
 
 const Header = () => {
     const userDetails = useSelector((state) => state.user.userDetails);
@@ -15,6 +15,7 @@ const Header = () => {
     const handleLogout = () => {
         dispatch(logout()); // Dispatch logout action
         localStorage.removeItem('userDetails'); // Clear user details from LocalStorage
+        setUser(null);
         navigate('/login'); // Redirect to the login page
     };
 

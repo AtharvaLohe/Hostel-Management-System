@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const MealComponent = () => {
     const [meals, setMeals] = useState([]);
@@ -7,6 +8,9 @@ const MealComponent = () => {
     const [selectedMeals, setSelectedMeals] = useState([]);
     const hostlerId = useSelector(state => state?.user?.userDetails?.hostler?.hostlerid); // Get hostlerId from Redux
     const [currentHour, setCurrentHour] = useState(new Date().getHours());
+   const location = useLocation();
+ 
+
   
     // Fetch meals
     const fetchMeals = () => {
@@ -55,6 +59,7 @@ const MealComponent = () => {
     // Function to check if the meal is selected by the hostler
     const isMealSelected = (status) => {
         // Map backend status to full meal name
+
         const statusToMealName = {
             "B": "BREAKFAST",
             "D": "DINNER",
@@ -92,15 +97,18 @@ const MealComponent = () => {
 
     // Fetch selected meals every hour at the top of the hour
     useEffect(() => {
+        setCurrentHour(new Date().getHours());
         fetchMeals(); // Fetch meals on initial load
         fetchSelectedMeals(); // Fetch selected meals on initial load
        
+      
         const interval = setInterval(() => {
             setCurrentHour(new Date().getHours());
-        }, 60000); // Update every minute (60,000 milliseconds)
+        },60000); // Update every minute (60,000 milliseconds)
     
+        
         return () => clearInterval(interval); // Cleanup on unmount
-    },[]); // Re-run when hostlerId changes
+    },[location]); // Re-run when hostlerId changes
 
     // Function to handle meal selection
     const handleMealSelection = (status) => {

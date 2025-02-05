@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.project.hostelmanagement.entities.DummyMeal;
 import com.project.hostelmanagement.entities.Meal;
 import com.project.hostelmanagement.entities.MealAllocation;
 import com.project.hostelmanagement.entities.MealAllocationRequest;
@@ -27,8 +28,9 @@ public class FoodAdminController {
 	@Autowired
 	private MealAllocationService mealAllocserv;
 	
+	
     @PostMapping("/meals")
-    public Meal addMeal(@RequestBody Meal meal) {
+    public Meal addMeal(@RequestBody DummyMeal meal) {
         return mealService.addMeal(meal);
     }
 

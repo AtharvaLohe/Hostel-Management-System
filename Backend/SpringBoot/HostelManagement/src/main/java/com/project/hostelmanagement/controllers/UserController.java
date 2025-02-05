@@ -26,11 +26,13 @@ public class UserController {
     private UserService userService;
 
     
+    //Used post method here for security purpose as we can see the password in url when we use get
     @PostMapping("/check")
     public ResponseEntity<User> checkUser(@RequestBody UserCheck userCheck) {
         User user = userService.getUserLogin(userCheck.getUsername(), userCheck.getPassword());
         if (user != null) {
             // Return the user with role info
+        	 user.setPassword(null); 
             return ResponseEntity.ok(user);
         } else {
             // If invalid credentials, return 401 Unauthorized

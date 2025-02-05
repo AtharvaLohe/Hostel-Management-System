@@ -102,6 +102,11 @@ const Login = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    const handleForget = () => {
+        navigate('/forgetPassword')
+    }
+
+
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
@@ -123,8 +128,7 @@ const Login = () => {
             const userData = await response.json();
             console.log('User   Data:', userData);  // Log the full user data to check
 
-            // Store user details in LocalStorage
-            localStorage.setItem('userDetails', JSON.stringify(userData));
+         
 
             // Dispatch the user data to Redux
             dispatch(setUser  ({
@@ -174,6 +178,7 @@ const Login = () => {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Login</button>
+                <button type="button" className="btn btn-primary" onClick={handleForget}>Forget Password</button>
                 {error && <p className="text-danger">{error}</p>}
             </form>
         </div>

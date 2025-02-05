@@ -215,13 +215,16 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css'; // Your custom styles
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, logout } from './userSlice';  // Adjust the path accordingly
 import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 
 const Profile = () => {
     const navigate = useNavigate();
-    const userDetails = JSON.parse(localStorage.getItem('userDetails'));
-
-    const { hostler } = userDetails;
+    const dispatch = useDispatch();  // Initialize dispatch to send actions
+    const userDetails = useSelector((state) => state.user.userDetails);  // Access userDetails from Redux store
+    const hostler = userDetails ? userDetails.hostler : {};  // Get hostler details
+    
     const [isEditingUser, setIsEditingUser] = useState(false);
     const [isEditingAddress, setIsEditingAddress] = useState(false);
     const [firstname, setFirstname] = useState(hostler.firstname);
@@ -276,7 +279,7 @@ const Profile = () => {
                         dateofbirth,
                     },
                 };
-                localStorage.setItem('userDetails', JSON.stringify(updatedUserDetails));
+                dispatch(setUser({ userDetails: updatedUserDetails, userType: userDetails.role.roleName }));
     
                 // Optionally show success message on screen
                 setSuccessMessage('User details successfully updated!');
@@ -322,7 +325,7 @@ const Profile = () => {
                         address: { area, city, state, pinCode }, // Update address locally as well
                     },
                 };
-                localStorage.setItem('userDetails', JSON.stringify(updatedUserDetails));
+                dispatch(setUser({ userDetails: updatedUserDetails, userType: userDetails.role.roleName }));
     
                 // Optionally show success message on screen
                 setSuccessMessage('Address successfully updated!');

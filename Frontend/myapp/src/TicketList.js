@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser, logout } from './userSlice';  // Adjust the path accordingly
 import 'bootstrap/dist/css/bootstrap.min.css'; // Ensure Bootstrap is imported
 
 const TicketList = () => {
@@ -6,11 +8,15 @@ const TicketList = () => {
     const [issues, setIssues] = useState([]); // State to hold the list of issues
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const userDetails = useSelector((state) => state.user.userDetails); 
 
+    
+    const dispatch = useDispatch();  // Initialize dispatch to send actions
+    
     // Fetch both tickets and issues
     useEffect(() => {
         const fetchTicketsAndIssues = async () => {
-            const userDetails = JSON.parse(localStorage.getItem('userDetails'));
+           // Access userDetails from Redux store
             const hostlerId = userDetails ? userDetails.userid : null; // Adjusting to use 'userid' in lowercase
 
             if (!hostlerId) {

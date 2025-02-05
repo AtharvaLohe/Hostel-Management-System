@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import TicketForm from './TicketForm';
 import TicketList from './TicketList'; // Import the TicketList component
 import { useNavigate } from 'react-router-dom';
+import MealComponent from './MealComponent';
 const HostlerDashboard = () => {
     const userDetails = useSelector(state => state.user.userDetails);
     const [view, setView] = useState(''); // State to manage which view to show
@@ -15,6 +16,11 @@ const HostlerDashboard = () => {
 
     const handleViewTickets = () => {
         setView('list'); // Show the list of tickets
+    };
+
+    const handleGoToMealSelection = () => {
+        
+        navigate('/hostlerMeal'); // Navigate to the meal selection page
     };
 
     return (
@@ -43,7 +49,7 @@ const HostlerDashboard = () => {
                 </button>
                 {userDetails && ( <button 
             className="btn btn-info px-4 py-2 shadow-sm" 
-            onClick={() => navigate('/hostlerMeal')} 
+            onClick={handleGoToMealSelection} 
             style={{ fontWeight: 'bold', fontSize: '16px' }}>
             Go to Meal Selection
                  </button>
@@ -71,6 +77,8 @@ const HostlerDashboard = () => {
                     This is your dashboard where you can raise new tickets, view existing tickets, and manage your requests.
                 </p>
             </div>
+
+       
         </div>
         
     );

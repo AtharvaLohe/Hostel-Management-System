@@ -20,5 +20,8 @@ public interface HostelerRepository extends JpaRepository<Hostler, Integer> {
 	
 	@Query("SELECT h FROM Hostler h WHERE SIZE(h.roomAllocations) > 0")
     List<Hostler> findHostlersWithRoomAllocations();
+	
+	Optional<Hostler> findByEmail(String email);
+	
 }
 	
