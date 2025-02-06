@@ -178,6 +178,69 @@ public class RoomService {
 	        return hr.findHostlersWithRoomAllocations();
 	    }
 	
+	  public Room addRoom(Room room) throws Exception {
+	        try {
+	            // Set default status if not provided
+	            
+	                room.setStatus(RoomStatus.AVAILABLE);  // Default status
+	                room.setRoomAllocations(null);
+
+	            // Save the room to the repository and return the saved room
+	            return rs.save(room);
+	        } catch (Exception e) {
+	            throw new Exception("Error while adding room: " + e.getMessage());  // Handle error
+	        }
+	    }
+
+	    // Update existing room
+	    public Room updateRoom(Integer roomId, Room roomDetails) throws Exception {
+	        try {
+	            // Check if the room exists
+	            Optional<Room> roomOptional = rs.findById(roomId);
+	            if (roomOptional.isPresent()) {
+	                Room existingRoom = roomOptional.get();
+
+	                // Update only the necessary fields
+	                if (roomDetails.getRoomno() != null) {
+	                    existingRoom.setRoomno(roomDetails.getRoomno());
+	                }
+	                if (roomDetails.getRoomtype() != null) {
+	                    existingRoom.setRoomtype(roomDetails.getRoomtype());
+	                }
+	                if (roomDetails.getCapacity() != null) {
+	                    existingRoom.setCapacity(roomDetails.getCapacity());
+	                }
+	                if (roomDetails.getPrice() != null) {
+	                    existingRoom.setPrice(roomDetails.getPrice());
+	                }
+	                if (roomDetails.getStatus() == null) {
+	                    existingRoom.setStatus(RoomStatus.AVAILABLE);  // Default status if not provided
+	                }
+
+	                // Save and return updated room
+	                return rs.save(existingRoom);
+	            } else {
+	                throw new Exception("Room not found");  // Room not found
+	            }
+	        } catch (Exception e) {
+	            throw new Exception("Error while updating room: " + e.getMessage());  // Handle error
+	        }
+	    }
+
+	    // Delete room
+	    public String deleteRoom(Integer roomId) throws Exception {
+	        try {
+	            if (rs.existsById(roomId)) {
+	                rs.deleteById(roomId);
+	                return "Room deleted successfully";  // Return success message
+	            } else {
+	                throw new Exception("Room not found");  // Room not found
+	            }
+	        } catch (Exception e) {
+	            throw new Exception("Error while deleting room: " + e.getMessage());  // Handle error
+	        }
+	    }
+	  
 	
 }
 

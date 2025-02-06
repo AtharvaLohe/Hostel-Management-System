@@ -23,5 +23,8 @@ public interface HostelerRepository extends JpaRepository<Hostler, Integer> {
 	
 	Optional<Hostler> findByEmail(String email);
 	
+	
+	 @Query("SELECT COUNT(h) FROM Hostler h")
+	 Long getTotalHostlers();
 }
 	
