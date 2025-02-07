@@ -32,13 +32,14 @@ public class RoomAllocation {
     @Column(name = "RoomAlloc_ID")
     private Integer roomallocid;
 
-    @JsonIgnoreProperties("roomAllocation")
+    @JsonIgnoreProperties("roomAllocations")
     @ManyToOne
     @JoinColumn(name = "Hostler_ID", nullable = false)
     private Hostler hostler; 
 
     @ManyToOne
     @JoinColumn(name = "Room_ID", nullable = false)
+    @JsonIgnoreProperties("roomAllocations") 
     private Room room; 
 
     @Column(nullable = false)

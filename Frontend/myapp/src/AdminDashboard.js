@@ -87,78 +87,71 @@
 
 // export default AdminDashboard;
 
-
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import RoomAllocation from './RoomAllocation';  
 import AdminTicketSystem from './AdminTicketSystem'; 
 import FoodMealManager from './AdminMeal';
+import AllocatedHostlers from './AllocatedHostler';
+import RoomStatusBoard from './RoomStatusBoard';
+import './CSS/AdminDashBoard.css';
 
 const AdminDashboard = () => {
     const userDetails = useSelector(state => state.user.userDetails);
-    const [view, setView] = useState(''); 
+    const [view, setView] = useState('home'); // Default to 'home'
 
     return (
         <div className="d-flex">
             {/* Sidebar Menu */}
-            <div className="bg-dark text-white p-4" style={{ width: '250px', minHeight: '100vh' }}>
-                <h2 className="text-center mb-4">Menu</h2>
-                <ul className="list-unstyled">
-                    <li className="mb-3">
-                        <button 
-                            className="btn btn-outline-light w-100" 
-                            onClick={() => setView('unallocated')}
-                        >
-                            <i className="fas fa-users me-2"></i> Unallocated Hostlers
-                        </button>
-                    </li>
-                    <li className="mb-3">
-                        <button 
-                            className="btn btn-outline-light w-100" 
-                            onClick={() => setView('tickets')}
-                        >
-                            <i className="fas fa-ticket-alt me-2"></i> Ticket List
-                        </button>
-                    </li>
-                    <li>
-                        <button 
-                            className="btn btn-outline-light w-100" 
-                            onClick={() => setView('meals')}
-                        >
-                            <i className="fas fa-utensils me-2"></i> Manage Meals
-                        </button>
-                    </li>
+            <div className="bg-sidebar">
+                <h2>Menu</h2>
+                <ul>
+                    {[
+                        { key: 'home', icon: 'home', label: 'Home' },
+                        { key: 'unallocated', icon: 'users', label: 'Unallocated Hostlers' },
+                        { key: 'tickets', icon: 'ticket-alt', label: 'Ticket List' },
+                        { key: 'meals', icon: 'utensils', label: 'Manage Meals' },
+                        { key: 'hostlers', icon: 'user-friends', label: 'Hostlers' },
+                        { key: 'rooms', icon: 'bed', label: 'Rooms' }
+                    ].map(item => (
+                        <li key={item.key}>
+                            <button 
+                                className="menu-button" 
+                                onClick={() => setView(item.key)}
+                            >
+                                <i className={`fas fa-${item.icon}`}></i> {item.label}
+                            </button>
+                        </li>
+                    ))}
                 </ul>
             </div>
             
             {/* Main Content */}
-            <div className="container mt-5 flex-grow-1">
-                <div className="text-center mb-5">
-                    <h1 className="display-4 text-primary">Admin Dashboard</h1>
-                    {userDetails && <h2 className="text-muted">Welcome, {userDetails.username}!</h2>}
-                </div>
-                
-                {/* Conditional rendering based on the selected view */}
-                {view === 'unallocated' && (
-                    <div className="card shadow-lg p-4 rounded-lg mb-4" style={{ backgroundColor: '#f4f6f9', minHeight: '300px' }}>
-                        <h3 className="text-center text-primary mb-4">Unallocated Hostlers</h3>
-                        <RoomAllocation /> 
+            <div className="main-content">
+                {/* Show the heading only on the Home section */}
+                {view === 'home' && (
+                    <div className="text-center mt-5">
+                        <h1>Admin Dashboard</h1>
+                        {userDetails && <h2>Welcome, {userDetails.username}!</h2>}
+                        <p>Manage hostel operations efficiently from this panel.</p>
                     </div>
                 )}
-                
-                {view === 'tickets' && (
-                    <div className="card shadow-lg p-4 rounded-lg mb-4" style={{ backgroundColor: '#f4f6f9', minHeight: '300px' }}>
-                        <h3 className="text-center text-primary mb-4">Ticket Management</h3>
-                        <AdminTicketSystem /> 
-                    </div>
-                )}
-                
-                {view === 'meals' && (
-                    <div className="card shadow-lg p-4 rounded-lg mb-4" style={{ backgroundColor: '#f4f6f9', minHeight: '300px' }}>
-                        <h3 className="text-center text-primary mb-4">Meal Management</h3>
-                        <FoodMealManager />
-                    </div>
-                )}
+
+                {/* Dynamic Content Sections */}
+                {[
+                    { key: 'unallocated', title: 'Unallocated Hostlers', component: <RoomAllocation /> },
+                    { key: 'tickets', title: 'Ticket Management', component: <AdminTicketSystem /> },
+                    { key: 'meals', title: 'Meal Management', component: <FoodMealManager /> },
+                    { key: 'hostlers', title: 'Hostler List', component: <AllocatedHostlers /> },
+                    { key: 'rooms', title: 'Room List', component: <RoomStatusBoard /> }
+                ].map(section => (
+                    view === section.key && (
+                        <div key={section.key} className="section-card">
+                            <h3 className="section-title">{section.title}</h3>
+                            {section.component}
+                        </div>
+                    )
+                ))}
             </div>
         </div>
     );

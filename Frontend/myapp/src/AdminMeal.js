@@ -159,8 +159,8 @@ const FoodMealManager = () => {
     };
 
     return (
-        <div className="container">
-            <h1>Food Meal Manager</h1>
+        <div>
+         
 
            
             <div className="button-container">
@@ -265,17 +265,58 @@ const FoodMealManager = () => {
 
             {/* Create Meal Form */}
             {activeForm === "createMeal" && (
-                <div>
-                    <h3>Select Food Item to Add Meal</h3>
-                    <ul>
-                        {foodItems.map((item) => (
-                            <li key={item.foodId}>
-                                {item.name} - {item.description}
-                                <button onClick={() => handleAddMealClick(item.foodId)}>Add Meal</button>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
+               <div>
+               <h3>Select Food Item to Add Meal</h3>
+               <ul style={{ listStyleType: "none", padding: 0 }}>
+                   {foodItems.map((item) => (
+                       <li 
+                           key={item.foodId} 
+                           style={{ 
+                               display: "flex", 
+                               alignItems: "center", 
+                               justifyContent: "space-between", 
+                               padding: "8px", 
+                               borderBottom: "1px solid #ddd" 
+                           }}
+                       >
+                           <div style={{ 
+                               display: "flex", 
+                               alignItems: "center", 
+                               flexGrow: 1 
+                           }}>
+                               <span 
+                                   style={{ 
+                                       minWidth: "150px", 
+                                       fontWeight: "bold", 
+                                       whiteSpace: "nowrap", 
+                                       overflow: "hidden", 
+                                       textOverflow: "ellipsis" 
+                                   }}
+                               >
+                                   {item.name}
+                               </span>
+                               <span style={{ marginLeft: "10px", flexGrow: 1 }}>
+                                   {item.description}
+                               </span>
+                           </div>
+                           <button 
+                               onClick={() => handleAddMealClick(item.foodId)} 
+                               style={{ 
+                                   padding: "6px 12px", 
+                                   backgroundColor: "darkblue", 
+                                   color: "white", 
+                                   border: "none", 
+                                   borderRadius: "4px", 
+                                   cursor: "pointer" 
+                               }}
+                           >
+                               Add Meal
+                           </button>
+                       </li>
+                   ))}
+               </ul>
+           </div>
+           
             )}
 
             {/* Pop-up form for creating a meal */}

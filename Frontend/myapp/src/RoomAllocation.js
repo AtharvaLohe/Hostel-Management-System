@@ -206,7 +206,7 @@
 // export default RoomAllocation;
 
 import React, { useState, useEffect } from 'react';
-
+import './CSS/RoomAllocation.css'
 const RoomAllocation = () => {
   const [unallocatedHostlers, setUnallocatedHostlers] = useState([]);
   const [rooms, setRooms] = useState([]);
@@ -306,12 +306,12 @@ const RoomAllocation = () => {
   if (error) return <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>;
 
   return (
-    <div style={{ display: 'flex', height: '100%' }}>
-      <div style={{ flex: 1, padding: '20px', borderRight: '1px solid #ddd', backgroundColor: '#fff' }}>
+    <div  style={{ display: 'flex',height: '100%' }}>
+      <div style={{ flex: 1, padding: '20px' }}>
         {allocationResponse && <div style={{ color: '#28a745', fontWeight: 'bold', textAlign: 'center' }}>{allocationResponse}</div>}
         <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
           {unallocatedHostlers.map((hostler) => (
-            <li key={hostler.hostlerid} style={{ marginBottom: '10px', padding: '10px', border: '1px solid #eee' }}>
+            <li key={hostler.hostlerid} style={{ marginBottom: '10px', border: '1px' }}>
               <div>
                 <strong>{hostler.firstname} {hostler.lastname}</strong>
                 <p>Email: {hostler.email}</p>

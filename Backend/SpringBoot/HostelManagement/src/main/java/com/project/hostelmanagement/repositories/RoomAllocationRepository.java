@@ -16,4 +16,7 @@ public interface RoomAllocationRepository extends JpaRepository<RoomAllocation, 
 
 	   @Query("SELECT SUM(ra.room.price) FROM RoomAllocation ra WHERE FUNCTION('YEAR', ra.allocationdate) = :year AND FUNCTION('MONTH', ra.allocationdate) = :month")
 	   Double getMonthlyRevenue(@Param("year") int year, @Param("month") int month);
+	   
+	   
+	   boolean existsByRoom_RoomId(Integer roomId);
 }

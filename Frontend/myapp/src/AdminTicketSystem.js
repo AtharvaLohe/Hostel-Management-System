@@ -9,7 +9,7 @@ const AdminTicketSystem = () => {
     const [resolutionDescription, setResolutionDescription] = useState('');
     const [showDetailModal, setShowDetailModal] = useState(false);
     const [ticketDetail, setTicketDetail] = useState('');
-
+ 
     const issueTypes = {
         1: 'Room Issue',
         2: 'Meal Issue',
@@ -106,20 +106,20 @@ const AdminTicketSystem = () => {
                                     <td>{ticket.raisedAt ? new Date(ticket.raisedAt).toLocaleDateString() : 'N/A'}</td>
                                     <td>{ticket.resolvedAt ? new Date(ticket.resolvedAt).toLocaleDateString() : 'N/A'}</td>
                                     <td>
-                                        <Button 
+                                        <button
                                             variant="info" 
                                             className="me-2"
                                             onClick={() => handleShowDetailModal(ticket.description)}
                                         >
                                             Detail
-                                        </Button>
-                                        <Button 
+                                        </button>
+                                        <button 
                                             variant="success" 
                                             onClick={() => handleShowResolveModal(ticket.ticketId)}
                                             disabled={ticket.status} // Disable the button if the ticket is resolved
                                         >
                                             Resolve
-                                        </Button>
+                                        </button>
                                     </td>
                                 </tr>
                             );

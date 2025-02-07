@@ -5,8 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.project.hostelmanagement.entities.Hostler;
 import com.project.hostelmanagement.entities.Room;
@@ -232,18 +236,28 @@ public class RoomService {
 	    }
 
 	    // Delete room
-	    public String deleteRoom(Integer roomId) throws Exception {
+	    @DeleteMapping("/deleteRoom/{roomId}")
+	    public ResponseEntity<String> deleteRoom(@PathVariable Integer roomId) {
 	        try {
-	            if (rs.existsById(roomId)) {
-	                rs.deleteById(roomId);
-	                return "Room deleted successfully";  // Return success message
-	            } else {
-	                throw new Exception("Room not found");  // Room not found
+	            // Check if the room exists
+	            if (!rs.existsById(roomId)) {
+	                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Room not found");
 	            }
+
+	            // Check if the room has any allocations
+	            if (ra.existsByRoom_RoomId(roomId)) {
+	                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Cannot delete room: It is currently allocated.");
+	            }
+
+	            // If no allocations exist, proceed with deletion
+	            rs.deleteById(roomId);
+	            return ResponseEntity.ok("Room deleted successfully");
 	        } catch (Exception e) {
-	            throw new Exception("Error while deleting room: " + e.getMessage());  // Handle error
+	            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+	                                 .body("Error while deleting room: " + e.getMessage());
 	        }
 	    }
+
 	  
 	
 }

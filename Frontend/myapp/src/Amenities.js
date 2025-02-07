@@ -3,7 +3,7 @@ import React from 'react';
 
 const Amenities = () => {
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 content-wrapper">
       <h2 className="text-center">Amenities</h2>
       <ul className="list-group mt-4">
         <li className="list-group-item">Free Wi-Fi</li>

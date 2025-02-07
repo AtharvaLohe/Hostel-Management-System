@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projecttttt\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj": {}
+    "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj": {}
   },
   "projects": {
-    "D:\\Projecttttt\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj": {
+    "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projecttttt\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj",
+        "projectUniqueName": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj",
         "projectName": "Project",
-        "projectPath": "D:\\Projecttttt\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj",
-        "packagesPath": "C:\\Users\\ankit\\.nuget\\packages\\",
-        "outputPath": "D:\\Projecttttt\\Hostel-Management-System\\ASP.Net\\Project\\obj\\",
+        "projectPath": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\Project.csproj",
+        "packagesPath": "C:\\Users\\ACER\\.nuget\\packages\\",
+        "outputPath": "D:\\Final Project\\Hostel-Management-System\\ASP.Net\\Project\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\ankit\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\ACER\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,6 +22,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -43,8 +40,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -110,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }

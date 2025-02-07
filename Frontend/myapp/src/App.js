@@ -27,7 +27,9 @@ import AdminTicketSystem from './AdminTicketSystem';
 import AllocatedHostlers from './AllocatedHostler';
 import ForgetPassword from './ForgetPassword';
 import OwnerDashboard from './OwnerDashboard';
+import RoomStatusBoard from './RoomStatusBoard';
 
+import '../src/App.css';
 
 
 
@@ -50,9 +52,11 @@ const App = () => {
                         <Route path="/amenities" element={<Amenities />} />
                         <Route path='/forgetPassword' element={<ForgetPassword></ForgetPassword>}/>
                        
+                       
+                       <Route path="/roomStatus" element={<RoomStatusBoard></RoomStatusBoard>}></Route>
                         {/* Protected Routes */}
                         <Route path="/owner" element={<OwnerDashboard></OwnerDashboard>}></Route>
-                       <Route path="/room" element={<AllocatedHostlers></AllocatedHostlers>}/> 
+                       <Route path="/roomAllocate" element={<AllocatedHostlers></AllocatedHostlers>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />

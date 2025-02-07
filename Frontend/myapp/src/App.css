@@ -1,10 +1,28 @@
+.custom-navbar {
+  background-color: #0FFCBE !important;
+  font-weight: bold;
+  color: black !important;
+}
+body{
+ background-color: #106EBE !important;
+ color: white !important; 
+ font-family: 'Poppins', sans-serif !important;
+}
 .App {
   text-align: center;
 }
 
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+button, .btn {
+  background-color:#0FFCBE;
+}
+ p, span, h1, h2, h3, h4, h5, h6, a, label {
+  color: white !important;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,8 +31,14 @@
   }
 }
 
+.content-wrapper {
+  padding-top: 70px; /* Adjust this based on your navbar height */
+color: black;
+}
+
+
 .App-header {
-  background-color: #282c34;
+  background-color: #0FFCBE;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -23,6 +47,7 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 
 .App-link {
   color: #61dafb;

@@ -97,7 +97,7 @@ const RegistrationForm = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 content-wrapper">
       <h2 className="text-center">Registration Form</h2>
       <form onSubmit={handleSubmit} className="w-50 mx-auto">
         <div className="mb-3">

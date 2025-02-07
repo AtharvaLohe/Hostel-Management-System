@@ -96,7 +96,7 @@ public class RoomController {
 
 	    // Delete room
 	    @DeleteMapping("/deleteRoom/{roomId}")
-	    public String deleteRoom(@PathVariable Integer roomId) {
+	    public ResponseEntity<String> deleteRoom(@PathVariable Integer roomId) {
 	        try {
 	            return rs.deleteRoom(roomId);  // Return success message
 	        } catch (Exception e) {

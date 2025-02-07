@@ -88,7 +88,12 @@ const AllocatedHostlers = () => {
 
   return (
     <div>
-      <h1>Allocated Hostlers</h1>
+       {/* Feedback Message */}
+       {feedbackMessage && (
+        <div style={{ backgroundColor: 'darkblue', color: 'white', padding: '10px', marginBottom: '10px' }}>
+          {feedbackMessage}
+        </div>
+      )}
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -96,23 +101,23 @@ const AllocatedHostlers = () => {
           <thead>
             <tr>
               
-              <th>Name</th>
-              <th>Email</th>
-              <th>Room</th>
-              <th>Actions</th>
+              <th className="px-4 py-2">Name</th>
+              <th className="px-4 py-2">Email</th>
+              <th className="px-4 py-2">Room</th>
+              <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
             {hostlers.map((hostler) => (
               <tr key={hostler.hostlerid}>
-                <td>{`${hostler.firstname} ${hostler.lastname}`}</td>
-                <td>{hostler.email}</td>
-                <td>
+                <td className="px-4 py-2">{`${hostler.firstname} ${hostler.lastname}`}</td>
+                <td className="px-4 py-2">{hostler.email}</td>
+                <td className="px-4 py-2">
                   {hostler.roomAllocations.length > 0
                     ? hostler.roomAllocations[0].room.roomno
                     : "No Room"}
                 </td>
-                <td>
+                <td className="px-4 py-2">
                   <button onClick={() => handleUpdate(hostler)}>Update Room</button>
                   <button onClick={() => handleDelete(hostler.hostlerid, hostler.roomAllocations[0]?.room.roomId)}>Delete</button>
                 </td>
@@ -122,22 +127,47 @@ const AllocatedHostlers = () => {
         </table>
       )}
 
-      {/* Feedback Message */}
-      {feedbackMessage && (
-        <div style={{ backgroundColor: 'green', color: 'white', padding: '10px', marginBottom: '10px' }}>
-          {feedbackMessage}
-        </div>
-      )}
+     
 
       {/* Delete Confirmation Modal */}
-      <Modal isOpen={deleteModalOpen} onRequestClose={() => setDeleteModalOpen(false)} contentLabel="Confirm Deletion">
+      <Modal isOpen={deleteModalOpen} onRequestClose={() => setDeleteModalOpen(false)} contentLabel="Confirm Deletion" style={{
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    content: {
+      width: "350px",
+      height: "auto",
+      margin: "auto",
+      padding: "20px",
+      borderRadius: "10px",
+      textAlign: "center",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    },
+  }}>
         <h2>Are you sure you want to unallocate this room?</h2>
         <button onClick={confirmDelete}>Yes</button>
         <button onClick={() => setDeleteModalOpen(false)}>No</button>
       </Modal>
 
       {/* Update Room Modal */}
-      <Modal isOpen={updateModalOpen} onRequestClose={() => setUpdateModalOpen(false)} contentLabel="Update Room">
+      <Modal isOpen={updateModalOpen} onRequestClose={() => setUpdateModalOpen(false)} contentLabel="Update Room"  style={{
+    overlay: {
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+    },
+    content: {
+      width: "400px",
+      height: "auto",
+      margin: "auto",
+      padding: "20px",
+      borderRadius: "10px",
+      textAlign: "center",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    },
+  }}>
         <h2>Update Room for {selectedHostler?.firstname} {selectedHostler?.lastname}</h2>
         <select onChange={(e) => setSelectedRoom(e.target.value)} value={selectedRoom}>
           <option value="">Select New Room</option>

@@ -156,7 +156,7 @@ const Login = () => {
     };
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5 content-wrapper">
             <h2 className="text-center">Login</h2>
             <form onSubmit={handleLogin} className="w-50 mx-auto">
                 <div className="mb-3">
@@ -179,8 +179,8 @@ const Login = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="btn btn-primary">Login</button>
-                <button type="button" className="btn btn-primary" onClick={handleForget}>Forget Password</button>
+                <button type="submit" className="btn">Login</button>
+                <button type="button" className="btn" onClick={handleForget}>Forget Password</button>
                 {error && <p className="text-danger">{error}</p>}
             </form>
         </div>
