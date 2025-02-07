@@ -24,11 +24,27 @@ const RegistrationForm = () => {
     return re.test(String(phone));
   };
 
+  const handleReset = () => {
+    setFirstName('');
+    setLastName('');
+    setEmail('');
+    setPhoneNumber('');
+    setDateOfBirth('');
+    setArea('');
+    setCity('');
+    setPinCode('');
+    setState('');
+    setEndDate('');
+    setMessage('');
+    setError('');
+  };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Basic validation
-    if (!firstName || !lastName || !email || !phoneNumber || !dateOfBirth || !area || !city || !pinCode || !state || !endDate) {
+    if (!firstName || !lastName || !email || !phoneNumber || !dateOfBirth || !area || !city || !pinCode || !state) {
       setError('All fields are required.');
       return;
     }
@@ -124,16 +140,34 @@ const RegistrationForm = () => {
             required
           />
         </div>
-        <div className="mb-3">
-          <input
-            type="date"
-            className="form-control"
-            placeholder="Date of Birth"
-            value={dateOfBirth}
-            onChange={(e) => setDateOfBirth(e.target.value)}
-            required
-          />
-        </div>
+        <div className="mb-3" style={{ position: "relative", display: "flex", alignItems: "center", marginBottom:"0px" }}>
+  <input
+    type="date"
+    className="form-control"
+    value={dateOfBirth}
+    onChange={(e) => setDateOfBirth(e.target.value)}
+    required
+    style={{
+      flex: 1, // Make input take full width
+      color: dateOfBirth ? "#000" : "#999", // Normal text color
+    }}
+  />
+  {!dateOfBirth && (
+    <span
+      style={{
+        position: "absolute",
+        right: "400px", // Position text towards the right
+        top:"10px",
+        color: "#999", // Placeholder text color
+        fontSize: "15px",
+        pointerEvents: "none", // Prevent clicking on the text
+      }}
+    >
+      Enter Date of Birth
+    </span>
+  )}
+</div>
+
         <div className="mb-3">
           <input
             type="text"
@@ -156,7 +190,7 @@ const RegistrationForm = () => {
         </div>
         <div className="mb-3">
           <input
-            type="text"
+            type="number"
             className="form-control"
             placeholder="Pin Code "
             value={pinCode}
@@ -174,17 +208,8 @@ const RegistrationForm = () => {
             required
           />
         </div>
-        <div className="mb-3">
-          <input
-            type="date"
-            className="form-control"
-            placeholder="End Date"
-            value={endDate}
-            onChange={(e) => setEndDate(e.target.value)}
-            required
-          />
-        </div>
         <button type="submit" className="btn btn-primary">Register</button>
+        <button type="button" className="btn btn-secondary" onClick={handleReset}>Reset</button>
         {error && <p className="text-danger">{error}</p>}
         {message && <p className="text-success">{message}</p>}
       </form>

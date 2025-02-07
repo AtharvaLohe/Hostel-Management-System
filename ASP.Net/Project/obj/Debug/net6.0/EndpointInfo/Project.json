@@ -1,0 +1,517 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Project",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Issue": {
+      "get": {
+        "tags": [
+          "Issue"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Issue"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Issue"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Issue"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Ticket/all": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Ticket/getTicket/{hostlerId}": {
+      "get": {
+        "tags": [
+          "Ticket"
+        ],
+        "parameters": [
+          {
+            "name": "hostlerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ticket"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Ticket/create": {
+      "post": {
+        "tags": [
+          "Ticket"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ticket"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Ticket/{id}/resolve": {
+      "put": {
+        "tags": [
+          "Ticket"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "type": "string"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ticket"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Address": {
+        "type": "object",
+        "properties": {
+          "addressId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "area": {
+            "type": "string",
+            "nullable": true
+          },
+          "city": {
+            "type": "string",
+            "nullable": true
+          },
+          "pinCode": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "state": {
+            "type": "string",
+            "nullable": true
+          },
+          "hostler": {
+            "$ref": "#/components/schemas/Hostler"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Hostler": {
+        "type": "object",
+        "properties": {
+          "hostlerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "dateofbirth": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "firstname": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastname": {
+            "type": "string",
+            "nullable": true
+          },
+          "phonenumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "addressId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "address": {
+            "$ref": "#/components/schemas/Address"
+          },
+          "user": {
+            "$ref": "#/components/schemas/User"
+          },
+          "mealallocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Mealallocation"
+            },
+            "nullable": true
+          },
+          "roomallocations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Roomallocation"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Issue": {
+        "type": "object",
+        "properties": {
+          "issueId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "issueName": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Mealallocation": {
+        "type": "object",
+        "properties": {
+          "maId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          },
+          "hId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hIdNavigation": {
+            "$ref": "#/components/schemas/Hostler"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Role": {
+        "type": "object",
+        "properties": {
+          "rId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "rName": {
+            "type": "string",
+            "nullable": true
+          },
+          "users": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/User"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Room": {
+        "type": "object",
+        "properties": {
+          "roomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "price": {
+            "type": "number",
+            "format": "float"
+          },
+          "roomNo": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roomType": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Roomallocation": {
+        "type": "object",
+        "properties": {
+          "roomAllocId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "allocationdate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "hostlerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "roomId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "room": {
+            "$ref": "#/components/schemas/Room"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Ticket": {
+        "type": "object",
+        "properties": {
+          "ticketId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hostlerId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "issueId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "status": {
+            "type": "boolean"
+          },
+          "raisedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "resolvedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "issue": {
+            "$ref": "#/components/schemas/Issue"
+          },
+          "hostler": {
+            "$ref": "#/components/schemas/Hostler"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          },
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "rId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "rIdNavigation": {
+            "$ref": "#/components/schemas/Role"
+          },
+          "hostler": {
+            "$ref": "#/components/schemas/Hostler"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

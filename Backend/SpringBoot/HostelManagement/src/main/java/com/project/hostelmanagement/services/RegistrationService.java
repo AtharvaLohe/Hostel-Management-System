@@ -36,7 +36,7 @@ public class RegistrationService {
         
        
     	 if (hostlerRepository.existsByEmail(hostler.getEmail()) || hostlerRepository.existsByPhonenumber(hostler.getPhonenumber())) {
-             return "Hostler with this email or phone number is already registered. You can log in.";
+             return "Hostler with this email or phone number is already registered. You will get an email when room get allocated to you.";
          }
 
        

@@ -141,7 +141,9 @@ const Login = () => {
             if (userData.role && userData.role.roleName === 'Admin') {
                 console.log('Redirecting to Admin Dashboard');
                 navigate('/admin');  // Navigating to '/admin' as per your route setup
-            } else {
+            }else if(userData.role && userData.role.roleName === 'Owner'){
+                navigate('/owner');
+            }else {
                 console.log('Redirecting to Hostler Dashboard');
                 navigate('/hostler-dashboard');  // Navigating to '/hostler-dashboard' as per your route setup
             }

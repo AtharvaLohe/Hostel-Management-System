@@ -61,7 +61,7 @@ const TicketList = () => {
             {tickets.length === 0 ? (
                 <p className="text-center">You have no tickets raised yet.</p>
             ) : (
-                <div className="list-group">
+                <div className="list-group">    
                     {tickets.map(ticket => (
                         <div key={ticket.ticketId} className={`list-group-item mb-3 p-4 border rounded ${ticket.status ? 'bg-success text-white' : 'bg-warning text-dark'}`}>
                             <h5>Issue: 
@@ -71,8 +71,11 @@ const TicketList = () => {
                             </h5>
                             <p><strong>Description:</strong> {ticket.description}</p>
                             <p><strong>Status:</strong> {ticket.status ? 'Resolved' : 'Pending'}</p>
-                            <p><strong>Raised At:</strong> {new Date(ticket.raisedAt).toLocaleString()}</p>
-                            {ticket.resolvedAt && <p><strong>Resolved At:</strong> {new Date(ticket.resolvedAt).toLocaleString()}</p>}
+                            <p><strong>Raised At:</strong> {new Date(ticket.raisedAt).toLocaleDateString('en-US')}</p>
+{ticket.resolvedAt && (
+  <p><strong>Resolved At:</strong> {new Date(ticket.resolvedAt).toLocaleDateString('en-US')}</p>
+)}
+
                         </div>
                     ))}
                 </div>

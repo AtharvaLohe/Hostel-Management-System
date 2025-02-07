@@ -7,6 +7,8 @@ const AdminTicketSystem = () => {
     const [showResolveModal, setShowResolveModal] = useState(false);
     const [ticketToResolve, setTicketToResolve] = useState(null);
     const [resolutionDescription, setResolutionDescription] = useState('');
+    const [showDetailModal, setShowDetailModal] = useState(false);
+    const [ticketDetail, setTicketDetail] = useState('');
 
     const issueTypes = {
         1: 'Room Issue',
@@ -66,6 +68,11 @@ const AdminTicketSystem = () => {
         setShowResolveModal(true);
     };
 
+    const handleShowDetailModal = (description) => {
+        setTicketDetail(description);
+        setShowDetailModal(true);
+    };
+
     return (
         <div className="container mt-5">
             {confirmationMessage && <p className="text-success text-center">{confirmationMessage}</p>}
@@ -73,10 +80,9 @@ const AdminTicketSystem = () => {
                 <table className="table table-striped table-hover table-bordered shadow-lg rounded-lg">
                     <thead className="table-dark">
                         <tr>
-                            <th>Ticket ID</th>
-                            <th>Hostler ID</th>
+                            <th>Hostler Name</th>
+                            <th>Room Number</th>
                             <th>Issue Type</th>
-                            <th>Description</th>
                             <th>Status</th>
                             <th>Raised At</th>
                             <th>Resolved At</th>
@@ -84,26 +90,40 @@ const AdminTicketSystem = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {tickets.map(ticket => (
-                            <tr key={ticket.ticketId}>
-                                <td>{ticket.ticketId}</td>
-                                <td>{ticket.hostlerId}</td>
-                                <td>{issueTypes[ticket.issueId]}</td>
-                                <td>{ticket.description}</td>
-                                <td>{ticket.status ? 'Resolved' : 'Pending'}</td>
-                                <td>{ticket.raisedAt}</td>
-                                <td>{ticket.resolvedAt || 'N/A'}</td>
-                                <td>
-                                    <Button 
-                                        variant="success" 
-                                        onClick={() => handleShowResolveModal(ticket.ticketId)}
-                                        disabled={ticket.status} // Disable the button if the ticket is resolved
-                                    >
-                                        Resolve
-                                    </Button>
-                                </td>
-                            </tr>
-                        ))}
+                        {tickets.map(ticket => {
+                            const hostler = ticket.hostler || {};
+                            const hostlerName = `${hostler.firstname || ""} ${hostler.lastname || ""}`.trim();
+                            const roomNo = (hostler.roomallocations && hostler.roomallocations.length > 0)
+                                ? hostler.roomallocations[0].room.roomNo
+                                : "Not Assigned";
+
+                            return (
+                                <tr key={ticket.ticketId}>
+                                    <td>{hostlerName || "N/A"}</td>
+                                    <td>{roomNo}</td>
+                                    <td>{issueTypes[ticket.issueId]}</td>
+                                    <td>{ticket.status ? 'Resolved' : 'Pending'}</td>
+                                    <td>{ticket.raisedAt ? new Date(ticket.raisedAt).toLocaleDateString() : 'N/A'}</td>
+                                    <td>{ticket.resolvedAt ? new Date(ticket.resolvedAt).toLocaleDateString() : 'N/A'}</td>
+                                    <td>
+                                        <Button 
+                                            variant="info" 
+                                            className="me-2"
+                                            onClick={() => handleShowDetailModal(ticket.description)}
+                                        >
+                                            Detail
+                                        </Button>
+                                        <Button 
+                                            variant="success" 
+                                            onClick={() => handleShowResolveModal(ticket.ticketId)}
+                                            disabled={ticket.status} // Disable the button if the ticket is resolved
+                                        >
+                                            Resolve
+                                        </Button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                     </tbody>
                 </table>
             </div>
@@ -126,6 +146,19 @@ const AdminTicketSystem = () => {
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowResolveModal(false)}>Cancel</Button>
                     <Button variant="success" onClick={handleResolve}>Resolve</Button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* Detail Modal */}
+            <Modal show={showDetailModal} onHide={() => setShowDetailModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Ticket Description</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <p>{ticketDetail}</p>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowDetailModal(false)}>Close</Button>
                 </Modal.Footer>
             </Modal>
         </div>

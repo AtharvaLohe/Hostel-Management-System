@@ -34,6 +34,8 @@ public class RoomController {
 		return rs.getAvailableRooms();
 	}
 	
+	
+	
 	 @GetMapping("/hostlers")
 	    public ResponseEntity<List<Hostler>> getAllAllocatedHostlers() {
 	        // Call service to get all allocated hostlers
@@ -45,6 +47,12 @@ public class RoomController {
 
 	        return ResponseEntity.ok(allocatedHostlers); // Return list of allocated hostlers
 	    }
+	 
+	 
+	 @GetMapping("/getAllRooms")
+		public List<Room> getAllRoom(){
+			return rs.getAllRoom();
+		}
 	 
 	 @DeleteMapping("/unallocate/{hid}/{rid}")
 	    public ResponseEntity<String> unallocateRoom(@PathVariable int hid, @PathVariable int rid) {

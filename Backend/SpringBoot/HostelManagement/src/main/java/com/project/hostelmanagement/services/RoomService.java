@@ -38,6 +38,10 @@ public class RoomService {
     }
 	
 	
+	public List<Room> getAllRoom(){
+		return rs.findAll();
+	}
+	
 	@Transactional
 	public String allocateRoom(int hid,int rid) {
 		Hostler hostler = hr.findById(hid)

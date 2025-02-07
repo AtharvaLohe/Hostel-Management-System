@@ -26,6 +26,7 @@ import TicketForm from './TicketForm';
 import AdminTicketSystem from './AdminTicketSystem';
 import AllocatedHostlers from './AllocatedHostler';
 import ForgetPassword from './ForgetPassword';
+import OwnerDashboard from './OwnerDashboard';
 
 
 
@@ -50,8 +51,8 @@ const App = () => {
                         <Route path='/forgetPassword' element={<ForgetPassword></ForgetPassword>}/>
                        
                         {/* Protected Routes */}
-                        
-                       <Route path='/room' element={<PrivateRoute><AllocatedHostlers></AllocatedHostlers></PrivateRoute>}/> 
+                        <Route path="/owner" element={<OwnerDashboard></OwnerDashboard>}></Route>
+                       <Route path="/room" element={<AllocatedHostlers></AllocatedHostlers>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />
@@ -62,6 +63,8 @@ const App = () => {
                         <Route path="/ticketlist" element= {<PrivateRoute><TicketList/></PrivateRoute>} />
                         <Route path="/ticketform" element={<PrivateRoute><TicketForm/></PrivateRoute>} />
                         <Route path="/ticket" element={<PrivateRoute><AdminTicketSystem/></PrivateRoute>}/>
+                        
+                        
                         <Route path="*" element={<h2>404 Not Found</h2>} />
                         
                         </Routes>
