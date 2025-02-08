@@ -50,41 +50,41 @@ const OwnerDashboard = () => {
     }
 
     return (
-        <div className="container py-5">
+        <div className="container py-5 content-wrapper">
             <h1 className="text-center mb-4">Owner Dashboard Overview</h1>
             <div className="row g-4">
                 <div className="col-md-4">
-                    <div className="card text-center p-3">
+                    <div className="card text-center p-3 bg-transparent border">
                         <h5>Total Hostlers</h5>
                         <h3>{dashboardData?.totalHostlers ?? "N/A"}</h3>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3">
+                    <div className="card text-center p-3 bg-transparent border">
                         <h5>Total Rooms</h5>
                         <h3>{dashboardData?.totalRooms ?? "N/A"}</h3>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 text-success">
+                    <div className="card text-center p-3 text-success bg-transparent border">
                         <h5>Available Rooms</h5>
                         <h3>{dashboardData?.availableRooms ?? "N/A"}</h3>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 text-danger">
+                    <div className="card text-center p-3 text-danger bg-transparent border">
                         <h5>Full Rooms</h5>
                         <h3>{dashboardData?.fullRooms ?? "N/A"}</h3>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3">
+                    <div className="card text-center p-3 bg-transparent border">
                         <h5>Total Revenue</h5>
                         <h3>{formatCurrency(dashboardData?.totalRevenue)}</h3>
                     </div>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3">
+                    <div className="card text-center p-3 bg-transparent border">
                         <h5>Monthly Revenue</h5>
                         <h3>{formatCurrency(dashboardData?.monthlyRevenue)}</h3>
                     </div>
