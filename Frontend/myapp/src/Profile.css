@@ -14,6 +14,9 @@
     opacity: 0;
 }
 
+.profile-box {
+    color: black !important;
+}
 .form-container.show {
     display: block;
     opacity: 1; /* Fade in form */

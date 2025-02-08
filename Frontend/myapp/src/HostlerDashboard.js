@@ -1,67 +1,68 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import "./CSS/AdminDashBoard.css"; // Reusing Admin Dashboard CSS for consistent styling
+import TicketList from "./TicketList";
+import TicketForm from "./TicketForm";
+import HostlerMeal from "./MealComponent";
+import "./CSS/AdminDashBoard.css"; // CSS for Sidebar and Layout
 
 const HostellerDashboard = () => {
   const userDetails = useSelector((state) => state.user.userDetails);
   const [view, setView] = useState("home"); // Default view is home
 
   return (
-    <div className="d-flex">
+    <div className="d-flex" style={{ height: "100vh" }}>
       {/* Sidebar Menu */}
-      <div className="bg-sidebar">
-        <h2>Menu</h2>
-        <ul>
+      <div
+        className="bg-sidebar"
+        style={{ width: "250px", height: "100vh", position: "fixed" }}
+      >
+        <h2 className="text-center py-3">Menu</h2>
+        <ul className="list-unstyled">
           {[
             { key: "home", icon: "home", label: "Home" },
-            { key: "ticket", icon: "ticket-alt", label: "Tickets" },
-            { key: "meal", icon: "utensils", label: "Meal" }
+            { key: "ticket", icon: "ticket-alt", label: "My Tickets" },
+            { key: "ticketForm", icon: "plus-circle", label: "Raise Ticket" },
+            { key: "meal", icon: "utensils", label: "Meal Selection" }
           ].map((item) => (
-            <li key={item.key}>
-              <button
-                className="menu-button"
-                onClick={() => setView(item.key)}
-              >
-                <i className={`fas fa-${item.icon}`}></i> {item.label}
-              </button>
+            <li
+              key={item.key}
+              className={`sidebar-item ${view === item.key ? "active" : ""}`}
+              onClick={() => setView(item.key)}
+            >
+              <i className={`fas fa-${item.icon} me-2`}></i> {item.label}
             </li>
           ))}
         </ul>
       </div>
 
-      {/* Main Content */}
-      <div className="main-content">
-        {/* Home Section (default) */}
-        {view === "home" && (
-          <div className="text-center mt-5">
-            <h1>Hosteller Dashboard</h1>
-            {userDetails && <h2>Welcome, {userDetails.username}!</h2>}
-            <p>Manage your hostel experience efficiently from this panel.</p>
-          </div>
-        )}
-
-        {/* Tickets Section */}
-        {view === "ticket" && (
-          <div className="text-center mt-5">
-            <h1>Ticket Management</h1>
-            <Link to="/ticketform" className="btn btn-warning px-5 py-3 m-2">
-              Raise Ticket
-            </Link>
-            <Link to="/ticketlist" className="btn btn-info px-5 py-3 m-2">
-              Show My Tickets
-            </Link>
-          </div>
-        )}
-
-        {/* Meal Section */}
-        {view === "meal" && (
-          <div className="text-center mt-5">
-            <h1>Meal Section</h1>
-            <Link to="/hostlerMeal" className="btn btn-success px-5 py-3">
-              Go to Meal Selection
-            </Link>
-          </div>
+      {/* Main Content Area */}
+      <div
+        className="main-content"
+        style={{ marginLeft: "250px", padding: "20px", width: "100%" }}
+      >
+        {[
+          {
+            key: "home",
+            content: (
+              <div className="text-center mt-5">
+                <h1>Hosteller Dashboard</h1>
+                {userDetails && <h2>Welcome, {userDetails.username}!</h2>}
+                <p>
+                  Manage your hostel experience efficiently from this panel.
+                </p>
+              </div>
+            )
+          },
+          { key: "ticket", content: <TicketList /> },
+          { key: "ticketForm", content: <TicketForm /> },
+          { key: "meal", content: <HostlerMeal /> }
+        ].map(
+          (section) =>
+            view === section.key && (
+              <div key={section.key}>
+                {section.content}
+              </div>
+            )
         )}
       </div>
     </div>

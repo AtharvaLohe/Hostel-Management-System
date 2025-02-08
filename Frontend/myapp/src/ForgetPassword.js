@@ -75,11 +75,11 @@ export default function ForgotPassword() {
     <div className="d-flex justify-content-center align-items-center vh-100" style={{ marginTop: "-50px" }}>
 
       <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
-        <h2 className="text-center mb-3">Forgot Password</h2>
+        <h2 className="text-center mb-3 text-dark">Forgot Password</h2>
 
         {/* Email Input */}
         <div className="mb-3">
-          <label className="form-label">Enter Email:</label>
+          <label className="form-label text-dark">Enter Email:</label>
           <input
             type="email"
             className="form-control"

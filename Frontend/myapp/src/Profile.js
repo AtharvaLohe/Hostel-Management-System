@@ -358,7 +358,7 @@ const Profile = () => {
             )}
             <div className="d-flex justify-content-center align-items-center flex-row">
                 {/* Profile Box */}
-                <div className={`card p-4 profile-box ${isEditingUser || isEditingAddress ? 'move-left' : ''}`} style={{ width: '100%', maxWidth: '400px' }}>
+                <div className={`card bg-dark p-4 profile-box ${isEditingUser || isEditingAddress ? 'move-left' : ''}`} style={{ width: '100%', maxWidth: '400px' }}>
                     <img
                         src="https://avatar.iran.liara.run/public/12"
                         alt="Profile"
@@ -389,7 +389,7 @@ const Profile = () => {
                 {/* Form Container */}
                 <div className={`form-container ${isEditingUser || isEditingAddress ? 'show' : ''}`}>
                     {isEditingUser && (
-                        <form className="bg-light p-4 mt-4 rounded shadow">
+                        <form className="bg-dark p-4 mt-4 rounded shadow">
                             <h3>Edit User Details</h3>
                             <div className="mb-3">
                                 <label htmlFor="firstname" className="form-label">First Name</label>
@@ -446,7 +446,7 @@ const Profile = () => {
                     )}
 
                     {isEditingAddress && (
-                        <form className="bg-light p-4 mt-4 rounded shadow">
+                        <form className="bg-dark p-4 mt-4 rounded shadow">
                             <h3>Edit Address</h3>
                             <div className="mb-3">
                                 <label htmlFor="area" className="form-label">Area</label>

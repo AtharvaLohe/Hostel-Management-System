@@ -131,10 +131,10 @@ const AdminTicketSystem = () => {
             {/* Resolve Confirmation Modal */}
             <Modal show={showResolveModal} onHide={() => setShowResolveModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Resolve Ticket</Modal.Title>
+                    <Modal.Title className="text-dark">Resolve Ticket</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Enter resolution description:</p>
+                    <p className="text-dark">Enter resolution description:</p>
                     <textarea
                         value={resolutionDescription}
                         onChange={(e) => setResolutionDescription(e.target.value)}
@@ -152,10 +152,10 @@ const AdminTicketSystem = () => {
             {/* Detail Modal */}
             <Modal show={showDetailModal} onHide={() => setShowDetailModal(false)}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Ticket Description</Modal.Title>
+                    <Modal.Title className="text-dark">Ticket Description</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>{ticketDetail}</p>
+                    <p className="text-dark">{ticketDetail}</p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => setShowDetailModal(false)}>Close</Button>

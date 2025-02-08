@@ -53,10 +53,10 @@ const App = () => {
                         <Route path='/forgetPassword' element={<ForgetPassword></ForgetPassword>}/>
                        
                        
-                       <Route path="/roomStatus" element={<RoomStatusBoard></RoomStatusBoard>}></Route>
+                       <Route path="/roomStatus" element={<PrivateRoute><RoomStatusBoard></RoomStatusBoard></PrivateRoute>}></Route>
                         {/* Protected Routes */}
-                        <Route path="/owner" element={<OwnerDashboard></OwnerDashboard>}></Route>
-                       <Route path="/roomAllocate" element={<AllocatedHostlers></AllocatedHostlers>}/> 
+                        <Route path="/owner" element={<PrivateRoute><OwnerDashboard></OwnerDashboard></PrivateRoute>}></Route>
+                       <Route path="/roomAllocate" element={<PrivateRoute><AllocatedHostlers></AllocatedHostlers></PrivateRoute>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
                         <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />

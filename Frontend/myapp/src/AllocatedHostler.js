@@ -119,7 +119,7 @@ const AllocatedHostlers = () => {
                 </td>
                 <td className="px-4 py-2">
                   <button onClick={() => handleUpdate(hostler)}>Update Room</button>
-                  <button onClick={() => handleDelete(hostler.hostlerid, hostler.roomAllocations[0]?.room.roomId)}>Delete</button>
+                  <button onClick={() => handleDelete(hostler.hostlerid, hostler.roomAllocations[0]?.room.roomId)}>Unallocate</button>
                 </td>
               </tr>
             ))}
