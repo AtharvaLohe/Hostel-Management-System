@@ -2,14 +2,14 @@
   {
     "ContainingType": "Project.Controllers.IssueController",
     "Method": "GetIssues",
-    "RelativePath": "api/Issue",
+    "RelativePath": "ticket/api/Issue",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Issue, Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Issue, p16Transaction, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -22,7 +22,7 @@
   {
     "ContainingType": "Project.Controllers.TicketController",
     "Method": "MakeResolved",
-    "RelativePath": "api/Ticket/{id}/resolve",
+    "RelativePath": "ticket/api/Ticket/{id}/resolve",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -53,14 +53,14 @@
   {
     "ContainingType": "Project.Controllers.TicketController",
     "Method": "GetTickets",
-    "RelativePath": "api/Ticket/all",
+    "RelativePath": "ticket/api/Ticket/all",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, p16Transaction, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -73,7 +73,7 @@
   {
     "ContainingType": "Project.Controllers.TicketController",
     "Method": "PostTicket",
-    "RelativePath": "api/Ticket/create",
+    "RelativePath": "ticket/api/Ticket/create",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -99,7 +99,7 @@
   {
     "ContainingType": "Project.Controllers.TicketController",
     "Method": "GetTicketsByHostlerId",
-    "RelativePath": "api/Ticket/getTicket/{hostlerId}",
+    "RelativePath": "ticket/api/Ticket/getTicket/{hostlerId}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -112,7 +112,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, Project, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.List\u00601[[Project.Models.Ticket, p16Transaction, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",

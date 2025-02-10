@@ -228,7 +228,7 @@ const RoomAllocation = () => {
 
   const fetchUnallocatedHostlers = async () => {
     try {
-      const response = await fetch('http://localhost:8080/admin/unassign');
+      const response = await fetch('http://localhost:8160/auth/admin/unassign');
       if (!response.ok) throw new Error('Error fetching unallocated hostlers');
       const data = await response.json();
       setUnallocatedHostlers(data);
@@ -239,7 +239,7 @@ const RoomAllocation = () => {
 
   const fetchAvailableRooms = async () => {
     try {
-      const response = await fetch('http://localhost:8080/admin/rooms');
+      const response = await fetch('http://localhost:8160/auth/admin/rooms');
       if (!response.ok) throw new Error('Error fetching available rooms');
       const data = await response.json();
       setRooms(data);
@@ -269,7 +269,7 @@ const RoomAllocation = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:8080/admin/allocate', {
+      const response = await fetch('http://localhost:8160/auth/admin/allocate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(allocationRequest),

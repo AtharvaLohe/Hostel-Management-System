@@ -256,7 +256,7 @@ const Profile = () => {
     
         // Send the updated hostler details to the server
         try {
-            const response = await fetch('http://localhost:8080/api/updatehost', {
+            const response = await fetch('http://localhost:8160/auth/api/updatehost', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -306,7 +306,7 @@ const Profile = () => {
     
         // Send the updated address to the server
         try {
-            const response = await fetch('http://localhost:8080/api/updateAddress', {
+            const response = await fetch('http://localhost:8160/auth/api/updateAddress', {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

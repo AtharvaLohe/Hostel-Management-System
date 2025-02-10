@@ -5,7 +5,7 @@ using Project.Models;
 
 namespace Project.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("ticket/api/[controller]")]
 	[ApiController]
 	public class IssueController : ControllerBase
 	{

@@ -19,7 +19,7 @@ const FoodMealManager = () => {
     const [mealCounts, setMealCounts] = useState({});    // State to hold the count of meals (e.g., DINNER, BREAKFAST, LUNCH)
     // Fetch food items from the backend when the component mounts
     useEffect(() => {
-        fetch("http://localhost:8080/admin/food/menu")
+        fetch("http://localhost:8160/auth/admin/food/menu")
             .then((response) => response.json())
             .then((data) => {
                 setFoodItems(data); // Set the fetched food items
@@ -31,14 +31,14 @@ const FoodMealManager = () => {
 
 
     const fetchTodaysMeals = () => {
-        fetch("http://localhost:8080/admin/today")
+        fetch("http://localhost:8160/auth/admin/today")
             .then((response) => response.json())
             .then((data) => setTodaysMeals(data))
             .catch((error) => console.error("Error fetching today's meals:", error));
     };
     
     const fetchTodaysMealCounts = () => {
-        fetch("http://localhost:8080/admin/countToday")
+        fetch("http://localhost:8160/auth/admin/countToday")
             .then((response) => response.json())
             .then((data) => setMealCounts(data))
             .catch((error) => console.error("Error fetching today's meal count:", error));
@@ -51,7 +51,7 @@ const FoodMealManager = () => {
     };
 
     const handleSaveFood = () => {
-        fetch("http://localhost:8080/admin/food/add", {
+        fetch("http://localhost:8160/auth/admin/food/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -84,7 +84,7 @@ const FoodMealManager = () => {
     };
     const handleDeleteMeal = (mealId) => {
         console.log("Meal ID is "+mealId);
-        fetch("http://localhost:8080/admin/meals/"+mealId, {
+        fetch("http://localhost:8160/auth/admin/meals/"+mealId, {
             method: "DELETE",
         })
         .then((response) => {
@@ -103,7 +103,7 @@ const FoodMealManager = () => {
     
 
     const handleSaveMeal = () => {
-        fetch("http://localhost:8080/admin/meals", {
+        fetch("http://localhost:8160/auth/admin/meals", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

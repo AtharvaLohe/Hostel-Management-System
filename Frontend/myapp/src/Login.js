@@ -110,7 +110,7 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const response = await fetch('http://localhost:8080/api/check', {
+            const response = await fetch('http://localhost:8160/auth/api/check', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -145,10 +145,11 @@ const Login = () => {
             }else if (userData.role && userData.role.roleName === 'Owner') {
                 console.log('Redirecting to Owner Dashboard');
                 navigate('/owner');
-            }else {
-                console.log('Redirecting to Hostler Dashboard');
-                navigate('/hostler-dashboard');  // Navigating to '/hostler-dashboard' as per your route setup
             }
+            // else {
+            //     console.log('Redirecting to Hostler Dashboard');
+            //     navigate('/hostler-dashboard');  // Navigating to '/hostler-dashboard' as per your route setup
+            // }
 
             setError('');
         } catch (err) {

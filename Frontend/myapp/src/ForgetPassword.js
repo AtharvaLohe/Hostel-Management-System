@@ -22,9 +22,9 @@ export default function ForgotPassword() {
 
     setTimeout(() => {
       setIsOtpButtonDisabled(false);
-    }, 5 * 60 * 1000);
+    }, 2* 60 * 1000);
 
-    const response = await fetch("http://localhost:8080/api/password/sendOtp", {
+    const response = await fetch("http://localhost:8160/auth/api/password/sendOtp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email }),
@@ -36,7 +36,7 @@ export default function ForgotPassword() {
 
   // Verify OTP Function
   const handleVerifyOtp = async () => {
-    const response = await fetch("http://localhost:8080/api/password/verifyOtp", {
+    const response = await fetch("http://localhost:8160/auth/api/password/verifyOtp", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, otp }),
@@ -57,7 +57,7 @@ export default function ForgotPassword() {
       return;
     }
 
-    const response = await fetch("http://localhost:8080/api/password/resetPassword", {
+    const response = await fetch("http://localhost:8160/auth/api/password/resetPassword", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, newPassword }),
@@ -95,7 +95,7 @@ export default function ForgotPassword() {
           disabled={isOtpButtonDisabled}
           className="btn btn-primary w-100"
         >
-          {isOtpButtonDisabled ? "Wait 5 min to Resend OTP" : "Send OTP"}
+          {isOtpButtonDisabled ? "Wait 2 min to Resend OTP" : "Send OTP"}
         </button>
 
         {/* OTP Input */}

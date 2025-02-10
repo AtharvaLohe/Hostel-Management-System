@@ -14,7 +14,7 @@ const RoomStatusBoard = () => {
 
   const fetchRooms = async () => {
     try {
-      const response = await fetch('http://localhost:8080/rooms/getAllRooms');
+      const response = await fetch('http://localhost:8160/auth/rooms/getAllRooms');
       if (!response.ok) throw new Error('Failed to fetch rooms');
       const data = await response.json();
       setRooms(data);
@@ -49,8 +49,8 @@ const RoomStatusBoard = () => {
 
   const handleSubmit = async () => {
     const url = editMode
-      ? `http://localhost:8080/rooms/updateRoom/${currentRoomId}`
-      : 'http://localhost:8080/rooms/addRoom';
+      ? `http://localhost:8160/auth/rooms/updateRoom/${currentRoomId}`
+      : 'http://localhost:8160/auth/rooms/addRoom';
 
     const method = editMode ? 'PUT' : 'POST';
 
@@ -76,7 +76,7 @@ const RoomStatusBoard = () => {
     if (!window.confirm('Are you sure you want to delete this room?')) return;
     
     try {
-      const response = await fetch(`http://localhost:8080/rooms/deleteRoom/${roomId}`, { method: 'DELETE' });
+      const response = await fetch(`http://localhost:8160/auth/rooms/deleteRoom/${roomId}`, { method: 'DELETE' });
       const message = await response.text();
 
       if (!response.ok) throw new Error(message || 'Failed to delete room');

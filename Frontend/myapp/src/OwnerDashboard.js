@@ -18,7 +18,7 @@ const OwnerDashboard = () => {
     useEffect(() => {
         const fetchDashboardData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/api/owner/dashboard/overview");
+                const response = await fetch("http://localhost:8160/auth/api/owner/dashboard/overview");
                 if (!response.ok) {
                     throw new Error(`Failed to fetch data: ${response.statusText}`);
                 }

@@ -20,7 +20,7 @@ const AllocatedHostlers = () => {
 
   const fetchHostlers = async () => {
     try {
-      const response = await fetch("http://localhost:8080/rooms/hostlers");
+      const response = await fetch("http://localhost:8160/auth/rooms/hostlers");
       const data = await response.json();
       setHostlers(data);
       setLoading(false);
@@ -32,7 +32,7 @@ const AllocatedHostlers = () => {
 
   const fetchAvailableRooms = async () => {
     try {
-      const response = await fetch("http://localhost:8080/rooms/available");
+      const response = await fetch("http://localhost:8160/auth/rooms/available");
       const data = await response.json();
       setAvailableRooms(data);
     } catch (error) {
@@ -48,7 +48,7 @@ const AllocatedHostlers = () => {
   const confirmDelete = async () => {
     const { hostlerId, roomId } = hostlerToDelete;
     const response = await fetch(
-      `http://localhost:8080/rooms/unallocate/${hostlerId}/${roomId}`,
+      `http://localhost:8160/auth/rooms/unallocate/${hostlerId}/${roomId}`,
       { method: "DELETE" }
     );
     if (response.ok) {
@@ -71,7 +71,7 @@ const AllocatedHostlers = () => {
   const confirmUpdate = async () => {
     const { hostlerid } = selectedHostler;
     const response = await fetch(
-      `http://localhost:8080/rooms/update/${hostlerid}/${selectedHostler.roomAllocations[0].room.roomId}/${selectedRoom}`,
+      `http://localhost:8160/auth/rooms/update/${hostlerid}/${selectedHostler.roomAllocations[0].room.roomId}/${selectedRoom}`,
       { method: "PUT" }
     );
     if (response.ok) {

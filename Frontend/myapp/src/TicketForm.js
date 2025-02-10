@@ -31,7 +31,7 @@ const TicketForm = () => {
       try {
         console.log('Fetching issues...');
         
-        const response = await fetch('https://localhost:7182/api/Issue'); // Correct URL for issues
+        const response = await fetch('http://localhost:8160/ticket/api/Issue'); // Correct URL for issues
         if (!response.ok) {
           throw new Error('Failed to fetch issues');
         }
@@ -88,7 +88,7 @@ const TicketForm = () => {
     setIsSubmitting(true);
   
     try {
-      const response = await fetch('https://localhost:7182/api/Ticket/create', {
+      const response = await fetch('http://localhost:8160/ticket/api/Ticket/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

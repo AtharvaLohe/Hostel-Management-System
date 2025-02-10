@@ -22,7 +22,7 @@ const AdminTicketSystem = () => {
     useEffect(() => {
         const fetchTickets = async () => {
             try {
-                const response = await fetch('https://localhost:7182/api/Ticket/all');
+                const response = await fetch('http://localhost:8160/ticket/api/Ticket/all');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -40,7 +40,7 @@ const AdminTicketSystem = () => {
         if (!ticketToResolve) return;
 
         try {
-            const response = await fetch(`https://localhost:7182/api/Ticket/${ticketToResolve}/resolve`, {
+            const response = await fetch(`http://localhost:8160/ticket/api/Ticket/${ticketToResolve}/resolve`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

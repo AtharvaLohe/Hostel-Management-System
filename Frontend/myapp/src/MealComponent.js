@@ -14,7 +14,7 @@ const MealComponent = () => {
   
     // Fetch meals
     const fetchMeals = () => {
-        fetch("http://localhost:8080/admin/today")
+        fetch("http://localhost:8160/auth/admin/today")
             .then((response) => response.json())
             .then((data) => {
                 // Group meals by status
@@ -42,7 +42,7 @@ const MealComponent = () => {
             console.log("HostlerId not present");
             return;
         }
-        fetch(`http://localhost:8080/admin/getSelectedMeal/${hostlerId}`)
+        fetch(`http://localhost:8160/auth/admin/getSelectedMeal/${hostlerId}`)
             .then((response) => response.json())  // Use response.json() for JSON arrays
             .then((data) => {
                 console.log(data); // This will log the array of selected meals, like ["BREAKFAST", "DINNER", "LUNCH"]
@@ -115,7 +115,7 @@ const MealComponent = () => {
         if (!hostlerId) return;
 
         // Send request to select meal
-        fetch("http://localhost:8080/admin/MealAllocation", {
+        fetch("http://localhost:8160/auth/admin/MealAllocation", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

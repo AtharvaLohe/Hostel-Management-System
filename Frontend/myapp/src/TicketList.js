@@ -27,7 +27,7 @@ const TicketList = () => {
 
             try {
                 // Fetch tickets for the hostler
-                const ticketResponse = await fetch(`https://localhost:7182/api/Ticket/getTicket/${hostlerId}`);
+                const ticketResponse = await fetch(`http://localhost:8160/ticket/api/Ticket/getTicket/${hostlerId}`);
                 if (!ticketResponse.ok) {
                     throw new Error('Failed to fetch tickets');
                 }
@@ -35,7 +35,7 @@ const TicketList = () => {
                 setTickets(ticketData);
 
                 // Fetch issues for the dropdown
-                const issueResponse = await fetch('https://localhost:7182/api/issue');
+                const issueResponse = await fetch('http://localhost:8160/ticket/api/issue');
                 if (!issueResponse.ok) {
                     throw new Error('Failed to fetch issues');
                 }
