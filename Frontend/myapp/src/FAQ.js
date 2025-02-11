@@ -8,7 +8,7 @@ const FAQ = () => {
       answer: "Yes, we have a minimum stay requirement of [insert number of nights], but feel free to inquire about special offers for longer stays."
     },
     {
-      question: "What amenities are available at FullStack Haven?",
+      question: "What amenities are available at Skyline Stay?",
       answer: (
         <ul>
           <li>Free Wi-Fi</li>
@@ -30,7 +30,7 @@ const FAQ = () => {
     },
     {
       question: "How can I contact you for more information?",
-      answer: "You can reach us via email at  info@fullstackhaven.com."
+      answer: "You can reach us via email at  info@Skyline Stay.com."
     }
   ];
 

@@ -225,6 +225,12 @@ const Profile = () => {
     const userDetails = useSelector((state) => state.user.userDetails);  // Access userDetails from Redux store
     const hostler = userDetails ? userDetails.hostler : {};  // Get hostler details
     
+
+    
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18); // Calculate date 18 years ago
+  const maxDateString = maxDate.toISOString().split('T')[0]; // format to YYYY-MM-DD
+
     const [isEditingUser, setIsEditingUser] = useState(false);
     const [isEditingAddress, setIsEditingAddress] = useState(false);
     const [firstname, setFirstname] = useState(hostler.firstname);
@@ -244,6 +250,32 @@ const Profile = () => {
     const handleCloseClick = () => navigate(-1);
 
     const handleUserSave = async () => {
+
+        const trimmedFirstname = firstname.trim();
+        const trimmedLastname = lastname.trim();
+        const trimmedEmail = email.trim();
+        const trimmedPhoneNumber = phonenumber.trim();
+        const trimmedDateOfBirth = dateofbirth.trim();
+    
+        // Validation: Check if any field is empty
+        if (!trimmedFirstname || !trimmedLastname || !trimmedEmail || !trimmedPhoneNumber || !trimmedDateOfBirth) {
+            setSuccessMessage('All fields are required.');
+            return;
+        }
+    
+        // Email validation (must be a Gmail address)
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+        if (!emailRegex.test(trimmedEmail)) {
+            setSuccessMessage('Enter a valid Gmail address (example@gmail.com).');
+            return;
+        }
+    
+        // Phone number validation (must be exactly 10 digits, only numbers)
+        const phoneRegex = /^[0-9]{10}$/;
+        if (!phoneRegex.test(trimmedPhoneNumber)) {
+            setSuccessMessage('Phone number must be exactly 10 digits.');
+            return;
+        }
         console.log('User details updated');
         const updatedHostlerDetails = {
             hostlerid: userDetails.hostler.hostlerid, // Keep the hostler ID to identify the hostler to update
@@ -295,6 +327,17 @@ const Profile = () => {
     };
 
     const handleAddressSave = async () => {
+
+        if (!area.trim() || !city.trim() || !state.trim() || !pinCode) {
+            setSuccessMessage('All fields are required.');
+            return;
+        }
+    
+        const pinCodeRegex = /^[0-9]{6}$/;
+        if (!pinCodeRegex.test(pinCode)) {
+            setSuccessMessage('Pin Code must be exactly 6 digits.');
+            return;
+        }
         console.log('Address updated');
         const updatedAddress = {
             addressid: userDetails.hostler.address.addressid, // Keep the address ID to identify the address to update
@@ -322,7 +365,9 @@ const Profile = () => {
                     ...userDetails,
                     hostler: {
                         ...hostler,
-                        address: { area, city, state, pinCode }, // Update address locally as well
+                        address: { 
+                            addressid: userDetails.hostler.address.addressid,
+                            area, city, state, pinCode }, // Update address locally as well
                     },
                 };
                 dispatch(setUser({ userDetails: updatedUserDetails, userType: userDetails.role.roleName }));
@@ -367,6 +412,11 @@ const Profile = () => {
                     />
                     <h2 className="text-center">{hostler.firstname} {hostler.lastname}</h2>
                     <p>Email: {hostler.email}</p>
+                    {hostler.roomAllocations && hostler.roomAllocations.length > 0 ? (
+                     <p>Room No: {hostler.roomAllocations[0].room.roomno}</p>
+                        ) : (
+                        <p>Room No: NA</p>  
+                        )}
                     <p>Phone Number: {hostler.phonenumber}</p>
                     <p>Date of Birth: {hostler.dateofbirth}</p>
                     <p>Address: {formattedAddress}</p>
@@ -438,6 +488,7 @@ const Profile = () => {
                                     id="dateofbirth"
                                     className="form-control"
                                     value={dateofbirth}
+                                    max = {maxDateString}
                                     onChange={(e) => setDateofbirth(e.target.value)}
                                 />
                             </div>

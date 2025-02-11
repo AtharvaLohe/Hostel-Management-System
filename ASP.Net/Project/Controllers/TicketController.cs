@@ -70,6 +70,7 @@ namespace Project.Controllers
 		{
 			using (var _context = new p16_hostelContext())
 			{
+				Console.WriteLine(ticket.HostlerId);
 				if (_context.Tickets == null)
 				{
 					return Problem("Entity set 'p16_hostelContext.Tickets' is null.");
@@ -133,13 +134,13 @@ namespace Project.Controllers
 					var stmpClient = new SmtpClient("smtp.gmail.com")
 					{
 						Port = 587,
-						Credentials = new NetworkCredential("hostellhubb@gmail.com", "jsbz sasy gwhj ktqf"),
+						Credentials = new NetworkCredential("atharva.lohe.al@gmail.com", "enbn rxgt yipr upxk"),
 						EnableSsl = true
 					};
 
 					var mailMessage = new MailMessage
 					{
-						From = new MailAddress("hostellhubb@gmail.com"),
+						From = new MailAddress("atharva.lohe.al@gmail.com"),
 						Subject = "Complaint Resolved",
 						Body = message,
 						IsBodyHtml = false

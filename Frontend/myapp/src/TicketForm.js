@@ -18,7 +18,7 @@ const TicketForm = () => {
     console.log('Fetched user details from localStorage:', userDetails); // Log the user details
 
     if (userDetails && userDetails.userid) { // Check for `userid` (lowercase)
-      setHostlerId(userDetails.userid); // Map `userid` to `hostlerId`
+      setHostlerId(userDetails.hostler.hostlerid); // Map `userid` to `hostlerId`
       console.log('Hostler ID (mapped from userid):', userDetails.userid); // Log the hostlerId
     } else {
       console.log('No userid found in localStorage'); // Log if no `userid` is found
@@ -116,8 +116,8 @@ const TicketForm = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="card shadow-lg p-4 rounded" style={{ backgroundColor: '#f9f9f9' }}>
+    <div className="container">
+      <div className="card shadow-lg pt-0 pb-2 px-5 rounded" style={{ backgroundColor: '#f9f9f9' }}>
         <h1 className="text-center mb-4 text-primary">Create a New Ticket</h1>
 
         {loading && <div className="alert alert-info">Loading issues...</div>}

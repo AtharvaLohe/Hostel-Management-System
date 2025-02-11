@@ -13,10 +13,9 @@ import { Navigate } from "react-router-dom";
             return <Navigate to={"/admin"}/>
         }else if(userDetails.role.roleName === 'Owner'){
             return <Navigate to={"/owner"}/>
+        }else if (userDetails.role.roleName === 'Hosteler'){
+            return <Navigate to={"/hostler-dashboard"}/>
         }
-        else if(userDetails.role.roleName === 'Hosteler'){
-             return <Navigate to={"/hostler-dashboard"}/>
-         }
     }
 
     return children;

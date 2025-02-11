@@ -54,6 +54,6 @@ public class RegistrationService {
         addressRepository.save(address); 
 
         // Return a success message
-        return "User  registered successfully";
+        return "User  registered successfully Admin will Send The Login Credentials Via Mail";
     }
 }

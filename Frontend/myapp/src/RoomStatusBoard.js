@@ -120,7 +120,7 @@ const RoomStatusBoard = () => {
       {showForm && (
         <div className="overlay">
           <div className="overlay-content">
-            <h4>{editMode ? 'Edit Room' : 'Add Room'}</h4>
+            <h4 className="text-dark" >{editMode ? 'Edit Room' : 'Add Room'}</h4>
             <input
               type="text"
               placeholder="Room No"

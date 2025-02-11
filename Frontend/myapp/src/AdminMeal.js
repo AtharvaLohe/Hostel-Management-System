@@ -323,17 +323,18 @@ const FoodMealManager = () => {
             {showMealForm && (
                 <div className="popup-overlay">
                     <div className="popup-content">
-                        <h3>Create Meal</h3>
-                        <label htmlFor="mealDate">Meal Date:</label>
+                        <h3 className="text-dark">Create Meal</h3>
+                        <label className="text-dark" htmlFor="mealDate">Meal Date:</label>
                         <input
                             id="mealDate"
                             name="date"
                             type="date"
                             value={mealInfo.date}
+                            min={new Date().toISOString().split("T")[0]}
                             onChange={handleMealInfoChange}
                         />
                         <br />
-                        <label htmlFor="mealStatus">Meal Type:</label>
+                        <label className="text-dark" htmlFor="mealStatus">Meal Type:</label>
                         <select
                             id="mealStatus"
                             name="status"
@@ -345,14 +346,14 @@ const FoodMealManager = () => {
                             <option value="D">Dinner</option>
                         </select>
                         <br />
-                        <label htmlFor="foodId">Food Item:</label>
+                        <label className="text-dark" htmlFor="foodId">Food Item:</label>
                         <input
                             type="text"
                             value={foodItems.find(item => item.foodId === mealInfo.foodId)?.name || ''}
                             readOnly
                         />
                         <br />
-                        <label htmlFor="mealDescription">Description:</label>
+                        <label className="text-dark" htmlFor="mealDescription">Description:</label>
                         <input
                             id="mealDescription"
                             name="description"

@@ -146,7 +146,7 @@ const AllocatedHostlers = () => {
       transform: "translate(-50%, -50%)",
     },
   }}>
-        <h2>Are you sure you want to unallocate this room?</h2>
+        <h2 className="text-dark" >Are you sure you want to unallocate this room?</h2>
         <button onClick={confirmDelete}>Yes</button>
         <button onClick={() => setDeleteModalOpen(false)}>No</button>
       </Modal>
@@ -157,6 +157,7 @@ const AllocatedHostlers = () => {
       backgroundColor: "rgba(0, 0, 0, 0.5)",
     },
     content: {
+     
       width: "400px",
       height: "auto",
       margin: "auto",
@@ -168,7 +169,7 @@ const AllocatedHostlers = () => {
       transform: "translate(-50%, -50%)",
     },
   }}>
-        <h2>Update Room for {selectedHostler?.firstname} {selectedHostler?.lastname}</h2>
+        <h2 className="text-dark" >Update Room for {selectedHostler?.firstname} {selectedHostler?.lastname}</h2>
         <select onChange={(e) => setSelectedRoom(e.target.value)} value={selectedRoom}>
           <option value="">Select New Room</option>
           {availableRooms.map((room) => (

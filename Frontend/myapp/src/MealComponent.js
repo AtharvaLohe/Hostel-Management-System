@@ -9,7 +9,7 @@ const MealComponent = () => {
     const hostlerId = useSelector(state => state?.user?.userDetails?.hostler?.hostlerid); // Get hostlerId from Redux
     const [currentHour, setCurrentHour] = useState(new Date().getHours());
    const location = useLocation();
- 
+    const [mealMessage, setMealMessage] = useState("");
 
   
     // Fetch meals
@@ -17,6 +17,16 @@ const MealComponent = () => {
         fetch("http://localhost:8160/auth/admin/today")
             .then((response) => response.json())
             .then((data) => {
+
+                if (!data || data.length === 0) {
+                    setMealMessage("Meal is not set for today");
+                    setGroupedMeals({}); // Ensure groupedMeals is empty
+                    return;
+                }
+    
+                setMealMessage(""); // Clear message when meals exist
+
+
                 // Group meals by status
                 const grouped = data.reduce((acc, meal) => {
                     if (!acc[meal.status]) {
@@ -104,7 +114,7 @@ const MealComponent = () => {
       
         const interval = setInterval(() => {
             setCurrentHour(new Date().getHours());
-        },60000); // Update every minute (60,000 milliseconds)
+        },3000); // Update every minute (60,000 milliseconds)
     
         
         return () => clearInterval(interval); // Cleanup on unmount
@@ -141,7 +151,10 @@ console.log("Is Dinner Selected:", isMealSelected("D")); // Check if dinner is s
     return (
         <div>
             <h2>Today's Meals</h2>
-            {Object.entries(groupedMeals).map(([status, meal]) => (
+
+        {mealMessage ? (
+            <p className="text-danger fw-bold">{mealMessage}</p>
+        ) : Object.entries(groupedMeals).map(([status, meal]) => (
                 <div key={status} style={{ marginBottom: "20px", padding: "10px", border: "1px solid black" }}>
                     <h3>
                         {status === "B" ? "Breakfast" : status === "L" ? "Lunch" : "Dinner"}

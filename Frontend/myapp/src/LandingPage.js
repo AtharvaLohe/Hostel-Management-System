@@ -12,7 +12,7 @@ const LandingPage = () => {
 
         {/* Text on the right */}
         <div className="col-md-6 text-center">
-          <h1 className="display-4">Welcome to FullStack Haven</h1>
+          <h1 className="display-4">Welcome to Skyline Stay</h1>
           <p className="lead">Your comfort and convenience are our priority.</p>
           <div className="mt-4">
             <a href="/login" className="btn btn-primary btn-lg mx-2">Login</a>

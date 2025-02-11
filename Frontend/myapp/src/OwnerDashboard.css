@@ -1,0 +1,25 @@
+.content-wrapper {
+    background-color:   #0FE29C; /* Light background for the dashboard */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+h5 {
+    font-weight: 600;
+    color: #343a40; /* Darker text for headings */
+}
+
+h3 {
+    font-weight: 700;
+    color: #007bff; /* Primary color for values */
+}

@@ -58,6 +58,19 @@ const RegistrationForm = () => {
       setError('Phone number must be 10 digits.');
       return;
     }
+    
+    // Function to validate Pin Code
+const isValidPinCode = (pin) => {
+  const pinCodePattern = /^[1-9][0-9]{5}$/; // Ensures 6-digit and does not start with 0
+  return pinCodePattern.test(pin);
+};
+
+// Add this inside handleSubmit function before submission
+if (!isValidPinCode(pinCode)) {
+  setError("Invalid Pin Code! Must be a 6-digit number (100000-999999).");
+  return;
+}
+
 
     const registrationData = {
       firstName,
@@ -96,8 +109,14 @@ const RegistrationForm = () => {
     }
   };
 
+  const maxDate = new Date();
+  maxDate.setFullYear(maxDate.getFullYear() - 18); // Calculate date 18 years ago
+  const maxDateString = maxDate.toISOString().split('T')[0]; // format to YYYY-MM-DD
+
   return (
     <div className="container mt-5 content-wrapper">
+      {error && <p  className="text-danger" style={{ marginLeft: "350px" }}><strong>{error}</strong></p>}
+      {message && <p  className="text-light" style={{ marginLeft: "240px" }}><strong>{message}</strong></p>}
       <h2 className="text-center">Registration Form</h2>
       <form onSubmit={handleSubmit} className="w-50 mx-auto">
         <div className="mb-3">
@@ -150,7 +169,8 @@ const RegistrationForm = () => {
     style={{
       flex: 1, // Make input take full width
       color: dateOfBirth ? "#000" : "#999", // Normal text color
-    }}
+    }} 
+    max = {maxDateString}   // Restrict date selection to 18 years or older
   />
   {!dateOfBirth && (
     <span
@@ -210,8 +230,7 @@ const RegistrationForm = () => {
         </div>
         <button type="submit" className="btn btn-primary">Register</button>
         <button type="button" className="btn btn-secondary" onClick={handleReset}>Reset</button>
-        {error && <p className="text-danger">{error}</p>}
-        {message && <p className="text-success">{message}</p>}
+        
       </form>
     </div>
   );

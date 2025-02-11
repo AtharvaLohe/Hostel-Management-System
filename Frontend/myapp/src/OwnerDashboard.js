@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Spinner, Alert } from 'react-bootstrap';
+import { Spinner, Alert, Card } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const formatCurrency = (value) => {
@@ -50,44 +50,56 @@ const OwnerDashboard = () => {
     }
 
     return (
-        <div className="container py-5 content-wrapper">
+        <div className="container py-5">
             <h1 className="text-center mb-4">Owner Dashboard Overview</h1>
             <div className="row g-4">
                 <div className="col-md-4">
-                    <div className="card text-center p-3 bg-transparent border">
-                        <h5>Total Hostlers</h5>
-                        <h3>{dashboardData?.totalHostlers ?? "N/A"}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-black">Total Hostlers</Card.Title>
+                            <Card.Text className="display-4 text-black">{dashboardData?.totalHostlers ?? "N/A"}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 bg-transparent border">
-                        <h5>Total Rooms</h5>
-                        <h3>{dashboardData?.totalRooms ?? "N/A"}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-black">Total Rooms</Card.Title>
+                            <Card.Text className="display-4 text-black">{dashboardData?.totalRooms ?? "N/A"}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 text-success bg-transparent border">
-                        <h5>Available Rooms</h5>
-                        <h3>{dashboardData?.availableRooms ?? "N/A"}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-success">Available Rooms</Card.Title>
+                            <Card.Text className="display-4 text-black">{dashboardData?.availableRooms ?? "N/A"}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 text-danger bg-transparent border">
-                        <h5>Full Rooms</h5>
-                        <h3>{dashboardData?.fullRooms ?? "N/A"}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-danger">Full Rooms</Card.Title>
+                            <Card.Text className="display-4 text-black">{dashboardData?.fullRooms ?? "N/A"}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 bg-transparent border">
-                        <h5>Total Revenue</h5>
-                        <h3>{formatCurrency(dashboardData?.totalRevenue)}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-black">Total Revenue</Card.Title>
+                            <Card.Text className="display-4 text-black">{formatCurrency(dashboardData?.totalRevenue)}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
                 <div className="col-md-4">
-                    <div className="card text-center p-3 bg-transparent border">
-                        <h5>Monthly Revenue</h5>
-                        <h3>{formatCurrency(dashboardData?.monthlyRevenue)}</h3>
-                    </div>
+                    <Card className="text-center p-4 border shadow-sm hover-effect bg-white">
+                        <Card.Body>
+                            <Card.Title className="text-black">Monthly Revenue</Card.Title>
+                            <Card.Text className="display-4 text-black">{formatCurrency(dashboardData?.monthlyRevenue)}</Card.Text>
+                        </Card.Body>
+                    </Card>
                 </div>
             </div>
         </div>

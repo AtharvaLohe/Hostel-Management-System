@@ -6,7 +6,7 @@ const ContactUs = () => {
     <div className="container mt-5 content-wrapper">
       <h2 className="text-center">Contact Us</h2>
       <p className="text-center">You can reach us at:</p>
-      <p className="text-center">Email: info@fullstackhaven.com</p>
+      <p className="text-center">Email: info@Skyline Stay.com</p>
       <p className="text-center">Phone: +1234567890</p>
     </div>
   );

@@ -12,7 +12,6 @@ import ContactUs from './ContactUs';
 import FAQ from './FAQ';
 import Amenities from './Amenities';
 import AdminDashboard from './AdminDashboard';
-import HostlerDashboard from './HostlerDashboard';
 import LandingPage from './LandingPage';
 import RegistrationForm from './Registration';
 import PrivateRoute from './PrivateRoute';
@@ -30,6 +29,7 @@ import OwnerDashboard from './OwnerDashboard';
 import RoomStatusBoard from './RoomStatusBoard';
 
 import '../src/App.css';
+import HostellerDashboard from './HostlerDashboard';
 
 
 
@@ -45,7 +45,7 @@ const App = () => {
                         
                         {/* Public Routes */}
                         <Route path='/' element={<LandingPage />} />
-                        <Route path="/login" element={<PublicRoute><Login></Login></PublicRoute>} />
+                        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
                         <Route path='/register' element={<RegistrationForm/>}/>
                         <Route path="/contact" element={<ContactUs />} />
                         <Route path="/faq" element={<FAQ />} />
@@ -59,7 +59,7 @@ const App = () => {
                        <Route path="/roomAllocate" element={<PrivateRoute><AllocatedHostlers></AllocatedHostlers></PrivateRoute>}/> 
                         <Route path="/admin" element={<PrivateRoute><AdminDashboard /></PrivateRoute>} />
                         <Route path="/meal" element={<PrivateRoute><FoodMealManager></FoodMealManager></PrivateRoute>}/>
-                        <Route path="/hostler-dashboard" element={<PrivateRoute><HostlerDashboard /></PrivateRoute>} />
+                        <Route path="/hostler-dashboard" element={<PrivateRoute><HostellerDashboard /></PrivateRoute>} />
                         <Route path="/hostelerprofile" element={<PrivateRoute><Profile/></PrivateRoute>} />
                         <Route path="/roomallocate" element={<PrivateRoute><RoomAllocation/></PrivateRoute>} />
                         {/* Fallback Route */}

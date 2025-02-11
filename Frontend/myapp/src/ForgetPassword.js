@@ -22,7 +22,7 @@ export default function ForgotPassword() {
 
     setTimeout(() => {
       setIsOtpButtonDisabled(false);
-    }, 2* 60 * 1000);
+    }, 5 * 60 * 1000);
 
     const response = await fetch("http://localhost:8160/auth/api/password/sendOtp", {
       method: "POST",
@@ -72,7 +72,7 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="d-flex justify-content-center align-items-center vh-100" style={{ marginTop: "-50px" }}>
+    <div className="d-flex justify-content-center align-items-center vh-100" style={{ marginTop: "50px" }}>
 
       <div className="card p-4 shadow-lg" style={{ width: "400px" }}>
         <h2 className="text-center mb-3 text-dark">Forgot Password</h2>
@@ -95,7 +95,7 @@ export default function ForgotPassword() {
           disabled={isOtpButtonDisabled}
           className="btn btn-primary w-100"
         >
-          {isOtpButtonDisabled ? "Wait 2 min to Resend OTP" : "Send OTP"}
+          {isOtpButtonDisabled ? "Wait 5 min to Resend OTP" : "Send OTP"}
         </button>
 
         {/* OTP Input */}
