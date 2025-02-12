@@ -17,6 +17,7 @@ const AdminTicketSystem = () => {
         4: 'Internet Connectivity',
         5: 'Noise Complaint',
         6: 'Cleaning Issue',
+        7: 'Other'
     };
 
     useEffect(() => {
@@ -75,7 +76,7 @@ const AdminTicketSystem = () => {
 
     return (
         <div className="container mt-5">
-            {confirmationMessage && <p className="text-success text-center">{confirmationMessage}</p>}
+            {confirmationMessage && <p className="text-light text-center">{confirmationMessage}</p>}
             <div className="table-responsive">
                 <table className="table table-striped table-hover table-bordered shadow-lg rounded-lg">
                     <thead className="table-dark">

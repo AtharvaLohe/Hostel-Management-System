@@ -17,7 +17,7 @@ const TicketList = () => {
     useEffect(() => {
         const fetchTicketsAndIssues = async () => {
            // Access userDetails from Redux store
-            const hostlerId = userDetails ? userDetails.userid : null; // Adjusting to use 'userid' in lowercase
+            const hostlerId = userDetails ? userDetails.hostler.hostlerid : null; // Adjusting to use 'userid' in lowercase
 
             if (!hostlerId) {
                 setError('Hostler ID not found');

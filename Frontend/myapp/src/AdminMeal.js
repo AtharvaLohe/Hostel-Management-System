@@ -303,8 +303,8 @@ const FoodMealManager = () => {
                                onClick={() => handleAddMealClick(item.foodId)} 
                                style={{ 
                                    padding: "6px 12px", 
-                                   backgroundColor: "darkblue", 
-                                   color: "white", 
+                                   backgroundColor: "mint", 
+                                   color: "black", 
                                    border: "none", 
                                    borderRadius: "4px", 
                                    cursor: "pointer" 

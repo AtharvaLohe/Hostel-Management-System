@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZqphyhOBhPrfyK8iGfFbQ8yHlTqkrOC6c+3hRXdXjS8=",
+  "Source": "p16Transaction",
+  "BasePath": "_content/p16Transaction",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
